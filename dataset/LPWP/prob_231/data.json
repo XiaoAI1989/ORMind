@@ -1,0 +1,14 @@
+[
+    {
+        "input": {
+            "throwing_games": 42.0,
+            "climbing_games": 5.0,
+            "constraint_1": 2.0,
+            "constraint_2": 5.0,
+            "constraint_3": 100.0
+        },
+        "output": [
+            670.0
+        ]
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "input": {
+            "manual_slicers": 3,
+            "automatic_slicers": 4
+
+        },
+        "output": [
+            7.5
+        ]
+    }
+]

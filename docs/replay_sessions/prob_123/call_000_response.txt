@@ -1,0 +1,14 @@
+```json
+{
+    "morphine_available": {"Type": "Numeric", "Definition": "Total amount of morphine available (mg)"},
+    "morphine_per_painkiller": {"Type": "Numeric", "Definition": "Morphine required per painkiller pill (mg)"},
+    "digestive_medicine_per_painkiller": {"Type": "Numeric", "Definition": "Digestive medicine required per painkiller pill (units)"},
+    "morphine_per_sleeping_pill": {"Type": "Numeric", "Definition": "Morphine required per sleeping pill (mg)"},
+    "digestive_medicine_per_sleeping_pill": {"Type": "Numeric", "Definition": "Digestive medicine required per sleeping pill (units)"},
+    "min_painkiller_pills": {"Type": "Numeric", "Definition": "Minimum number of painkiller pills to produce"},
+    "sleeping_pill_ratio": {"Type": "Numeric", "Definition": "Minimum proportion of total pills that must be sleeping pills (%)"},
+    "painkiller_count": {"Type": "Decision Variable", "Definition": "Number of painkiller pills to manufacture"},
+    "sleeping_pill_count": {"Type": "Decision Variable", "Definition": "Number of sleeping pills to manufacture"},
+    "total_digestive_medicine": {"Type": "Objective", "Definition": "Total digestive medicine needed (to minimize)"}
+}
+```

@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "temperature_check": 10775,
+            "blood_test": 45
+        },
+        "output": [
+            10820
+        ]
+    }
+]

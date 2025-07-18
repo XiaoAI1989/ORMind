@@ -1,0 +1,51 @@
+{
+    "background": "The problem involves determining the production quantity for a set of products in a week, given production rates, a profit per ton for each product, a limited number of available hours, and constraints on the minimum and maximum sales for each product.",
+    "constraints": [
+        "Production quantity for each product p is non-negative",
+        "Total production hours for all products must not exceed AvailableHours",
+        "Each product p must be sold in amounts at least equal to MinimumSale_p tons",
+        "Each product p must be sold in amounts no more than MaximumSale_p tons"
+    ],
+    "objective": "Maximize the total profit from selling all products within the available hours and given sale constraints for each product",
+    "description": "Consider a production problem. Given a set of products \\param{ProductNum}. Each product p is produced at a rate of \\param{ProductionRate_p} tons per hour. There are \\param{AvailableHours} hours available in a week. The profit per ton for each product p is \\param{ProfitPerTon_p}. There is a lower limit \\param{MinimumSale_p} and an upper limit \\param{MaximumSale_p} on the tons of each product p sold in a week. The problem aims to maximize the total profit from selling all products. It is constrained that the total of hours used by all products may not exceed the hours available. How to decide the tons of each product p to be produced?",
+    "parameters": [
+        {
+            "symbol": "ProductNum",
+            "definition": "The number of products",
+            "shape": []
+        },
+        {
+            "symbol": "ProductionRate",
+            "definition": "The production rate of each product in tons per hour",
+            "shape": [
+                "ProductNum"
+            ]
+        },
+        {
+            "symbol": "ProfitPerTon",
+            "definition": "The profit per ton for each product",
+            "shape": [
+                "ProductNum"
+            ]
+        },
+        {
+            "symbol": "MinimumSale",
+            "definition": "The lower limit on the tons of each product sold in a week",
+            "shape": [
+                "ProductNum"
+            ]
+        },
+        {
+            "symbol": "MaximumSale",
+            "definition": "The upper limit on the tons of each product sold in a week",
+            "shape": [
+                "ProductNum"
+            ]
+        },
+        {
+            "symbol": "AvailableHours",
+            "definition": "The total available hours in a week for production",
+            "shape": []
+        }
+    ]
+}

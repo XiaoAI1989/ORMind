@@ -1,0 +1,33 @@
+```python
+from pulp import LpProblem, LpVariable, LpMaximize, lpSum, LpBinary, value
+
+def solve_knapsack(TotalItems, ItemValues, ItemWeights, MaxKnapsackWeight):
+    # Create the optimization problem (maximization)
+    problem = LpProblem("Knapsack_Problem", LpMaximize)
+
+    # Decision variables: x_i in {0, 1} for each item
+    x = [LpVariable(f"item_{i}", cat=LpBinary) for i in range(TotalItems)]
+
+    # Objective function: maximize total value
+    problem += lpSum([ItemValues[i] * x[i] for i in range(TotalItems)])
+
+    # Constraint: total weight cannot exceed capacity
+    problem += (
+        lpSum([ItemWeights[i] * x[i] for i in range(TotalItems)])
+        <= MaxKnapsackWeight
+    )
+
+    # Solve the problem
+    problem.solve()
+
+    selected_items = [i for i in range(TotalItems) if value(x[i]) == 1]
+    total_value = value(problem.objective)
+    total_weight = sum(ItemWeights[i] for i in selected_items)
+
+    return {
+        'selected_items': selected_items,
+        'total_value': total_value,
+        'total_weight': total_weight,
+        'status': str(problem.status)
+    }
+```

@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "beam_bridges": 20,
+            "truss_bridges": 0
+        },
+        "output": [
+            800
+        ]
+    }
+]

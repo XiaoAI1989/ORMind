@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "large_ships": 4,
+            "small_ships": 5
+        },
+        "output": [
+            9
+        ]
+    }
+]

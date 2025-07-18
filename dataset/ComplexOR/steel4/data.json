@@ -1,0 +1,44 @@
+[
+    {
+        "input": {
+            "NumProducts": 3,
+            "NumStages": 2,
+            "ProductionRate": [
+                [
+                    200,
+                    200
+                ],
+                [
+                    200,
+                    140
+                ],
+                [
+                    200,
+                    160
+                ]
+            ],
+            "ProfitPerTon": [
+                25,
+                30,
+                29
+            ],
+            "MinCommitment": [
+                1000,
+                500,
+                750
+            ],
+            "MaxMarketLimit": [
+                6000,
+                4000,
+                3500
+            ],
+            "StageAvailability": [
+                35,
+                40
+            ]
+        },
+        "output": [
+            "Infeasible"
+        ]
+    }
+]

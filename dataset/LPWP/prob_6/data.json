@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "tomatoes": 70.0,
+            "potatoes": 70.0
+        },
+        "output": [
+            66500.0
+        ]
+    }
+]

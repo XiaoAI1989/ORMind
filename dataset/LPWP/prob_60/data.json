@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "seasonal_snow_remover": 300,
+            "permanent_snow_remover": 6500
+        },
+        "output": [
+            44.0
+        ]
+    }
+]

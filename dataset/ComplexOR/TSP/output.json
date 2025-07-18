@@ -1,0 +1,165 @@
+[
+    "The problem is solved.",
+    {
+        "background": "The problem is focused on allocating goods from multiple origins to multiple destinations, considering the individual supply limits at each origin and demand requirements at each destination, with the goal of minimizing the total transportation cost.",
+        "problem_type": "LP",
+        "parameters": [
+            {
+                "symbol": "OriginNum",
+                "definition": "The total number of origins",
+                "shape": [],
+                "code": "OriginNum = data[\"OriginNum\"] # scalar parameter"
+            },
+            {
+                "symbol": "DestinationNum",
+                "definition": "The total number of destinations",
+                "shape": [],
+                "code": "DestinationNum = data[\"DestinationNum\"] # scalar parameter"
+            },
+            {
+                "symbol": "Supply",
+                "definition": "The supply of goods available at each origin",
+                "shape": [
+                    "OriginNum"
+                ],
+                "code": "Supply = np.array(data[\"Supply\"]) # ['OriginNum']"
+            },
+            {
+                "symbol": "Demand",
+                "definition": "The demand for goods to be satisfied at each destination",
+                "shape": [
+                    "DestinationNum"
+                ],
+                "code": "Demand = np.array(data[\"Demand\"]) # ['DestinationNum']"
+            },
+            {
+                "symbol": "Cost",
+                "definition": "The cost of transporting goods from origin i to destination j",
+                "shape": [
+                    "OriginNum",
+                    "DestinationNum"
+                ],
+                "code": "Cost = np.array(data[\"Cost\"]) # ['OriginNum', 'DestinationNum']"
+            }
+        ],
+        "constraint": [
+            {
+                "description": "Each origin i (where i is an index for origins) has a supply limit of Supply_i",
+                "status": "coded",
+                "formulation": "\\sum_{j=1}^{\\textup{DestinationNum}} \\textup{QuantityShipped}_{i,j} \\leq \\textup{Supply}_i \\quad \\forall i \\in \\{1, \\ldots, \\textup{OriginNum}\\}",
+                "related_variables": [
+                    "QuantityShipped"
+                ],
+                "related_parameters": [
+                    "DestinationNum",
+                    "Supply",
+                    "OriginNum"
+                ],
+                "code": "# Add supply limit constraints for each origin\nfor i in range(OriginNum):\n    model.addConstr(gp.quicksum(QuantityShipped[i, j] for j in range(DestinationNum)) <= Supply[i], name=f\"supply_limit_{i}\")"
+            },
+            {
+                "description": "Each destination j (where j is an index for destinations) requires Demand_j amount of goods",
+                "status": "coded",
+                "formulation": "\\sum_{i=1}^{\\textup{OriginNum}} \\textup{QuantityShipped}_{i,j} \\geq \\textup{Demand}_j \\quad \\forall j \\in \\{1, \\ldots, \\textup{DestinationNum}\\}",
+                "related_variables": [
+                    "QuantityShipped"
+                ],
+                "related_parameters": [
+                    "OriginNum",
+                    "Demand",
+                    "DestinationNum"
+                ],
+                "code": "# Add demand satisfaction constraints\nfor j in range(DestinationNum):\n    model.addConstr(gp.quicksum(QuantityShipped[i, j] for i in range(OriginNum)) >= Demand[j], name=f\"demand_satisfaction_{j}\")"
+            },
+            {
+                "description": "Amount of goods sent from any origin to any destination is non-negative",
+                "status": "coded",
+                "formulation": "\\textup{QuantityShipped}_{i,j} \\geq 0 \\quad \\forall i \\in \\{1, \\ldots, \\textup{OriginNum}\\}, \\quad \\forall j \\in \\{1, \\ldots, \\textup{DestinationNum}\\}",
+                "related_variables": [
+                    "QuantityShipped"
+                ],
+                "related_parameters": [
+                    "OriginNum",
+                    "DestinationNum"
+                ],
+                "code": "# The non-negativity constraint for QuantityShipped is already enforced by default in Gurobi\n# when the variable is created with vtype=gp.GRB.CONTINUOUS. No additional code is needed."
+            },
+            {
+                "description": "The total quantity shipped from each origin must not exceed its supply",
+                "formulation": "\\sum_{j=1}^{\\textup{DestinationNum}} \\textup{QuantityShipped}_{i,j} \\leq \\textup{Supply}_{i} \\ \\forall i \\in \\{1, \\ldots, \\textup{OriginNum}\\}",
+                "status": "coded",
+                "related_variables": [
+                    "QuantityShipped"
+                ],
+                "related_parameters": [
+                    "DestinationNum",
+                    "Supply",
+                    "OriginNum"
+                ],
+                "code": "# Add constraints: total quantity shipped from each origin must not exceed its supply\nfor i in range(OriginNum):\n    model.addConstr(gp.quicksum(QuantityShipped[i, j] for j in range(DestinationNum)) <= Supply[i], name=f\"supply_constraint_{i}\")"
+            },
+            {
+                "description": "The total quantity shipped to each destination must meet its demand",
+                "formulation": "\\sum_{i=1}^{\\textup{OriginNum}} \\textup{QuantityShipped}_{i,j} \\geq \\textup{Demand}_{j} \\ \\forall j \\in \\{1, \\ldots, \\textup{DestinationNum}\\}",
+                "status": "coded",
+                "related_variables": [
+                    "QuantityShipped"
+                ],
+                "related_parameters": [
+                    "OriginNum",
+                    "Demand",
+                    "DestinationNum"
+                ],
+                "code": "# Add constraints for meeting demand at each destination\nfor j in range(DestinationNum):\n    model.addConstr(\n        gp.quicksum(QuantityShipped[i, j] for i in range(OriginNum)) >= Demand[j],\n        name=f\"meet_demand_{j}\"\n    )"
+            },
+            {
+                "description": "The quantity shipped must be non-negative",
+                "formulation": "\\textup{QuantityShipped}_{i,j} \\geq 0 \\ \\forall i \\in \\{1, \\ldots, \\textup{OriginNum}\\}, \\forall j \\in \\{1, \\ldots, \\textup{DestinationNum}\\}",
+                "status": "coded",
+                "related_variables": [
+                    "QuantityShipped"
+                ],
+                "related_parameters": [
+                    "OriginNum",
+                    "DestinationNum"
+                ],
+                "code": "# The non-negativity constraint is already enforced by default when creating the variables\n# QuantityShipped = model.addVars(OriginNum, DestinationNum, vtype=gp.GRB.CONTINUOUS, name=\"QuantityShipped\")\n# Gurobi automatically sets lower bounds of continuous variables to 0 unless specified otherwise"
+            }
+        ],
+        "variables": [
+            {
+                "definition": "The quantity of goods shipped from origin i to destination j",
+                "symbol": "QuantityShipped",
+                "shape": [
+                    "OriginNum",
+                    "DestinationNum"
+                ],
+                "status": "coded",
+                "code": "QuantityShipped = model.addVars(OriginNum, DestinationNum, vtype=gp.GRB.CONTINUOUS, name=\"QuantityShipped\")"
+            }
+        ],
+        "objective": [
+            {
+                "description": "Minimize the total transportation cost from origins to destinations",
+                "status": "coded",
+                "formulation": "\\min \\sum_{i=1}^{\\textup{OriginNum}} \\sum_{j=1}^{\\textup{DestinationNum}} \\textup{Cost}_{i,j} \\cdot \\textup{QuantityShipped}_{i,j}",
+                "related_variables": [
+                    "QuantityShipped"
+                ],
+                "related_parameters": [
+                    "OriginNum",
+                    "DestinationNum",
+                    "Cost"
+                ],
+                "code": "# Set objective\nmodel.setObjective(gp.quicksum(Cost[i,j] * QuantityShipped[i,j] for i in range(OriginNum) for j in range(DestinationNum)), gp.GRB.MINIMIZE)"
+            }
+        ],
+        "solution_status": "solved",
+        "solver_output_status": 2,
+        "error_message": null,
+        "obj_val": 315.0,
+        "log_folder": "logs/log_20240722202200_complexor_TSP/",
+        "data_json_path": "data/complexor/TSP/data.json",
+        "code": "\nimport json\nimport numpy as np\nimport math\n\nimport gurobipy as gp\n\n # Define model\nmodel = gp.Model('model')\n\nwith open(\"data/complexor/TSP/data.json\", \"r\") as f:\n    data = json.load(f)\n\n\nOriginNum = data[\"OriginNum\"] # scalar parameter\nDestinationNum = data[\"DestinationNum\"] # scalar parameter\nSupply = np.array(data[\"Supply\"]) # ['OriginNum']\nDemand = np.array(data[\"Demand\"]) # ['DestinationNum']\nCost = np.array(data[\"Cost\"]) # ['OriginNum', 'DestinationNum']\nQuantityShipped = model.addVars(OriginNum, DestinationNum, vtype=gp.GRB.CONTINUOUS, name=\"QuantityShipped\")\n\n# Add supply limit constraints for each origin\nfor i in range(OriginNum):\n    model.addConstr(gp.quicksum(QuantityShipped[i, j] for j in range(DestinationNum)) <= Supply[i], name=f\"supply_limit_{i}\")\n\n# Add demand satisfaction constraints\nfor j in range(DestinationNum):\n    model.addConstr(gp.quicksum(QuantityShipped[i, j] for i in range(OriginNum)) >= Demand[j], name=f\"demand_satisfaction_{j}\")\n\n# The non-negativity constraint for QuantityShipped is already enforced by default in Gurobi\n# when the variable is created with vtype=gp.GRB.CONTINUOUS. No additional code is needed.\n\n# Add constraints: total quantity shipped from each origin must not exceed its supply\nfor i in range(OriginNum):\n    model.addConstr(gp.quicksum(QuantityShipped[i, j] for j in range(DestinationNum)) <= Supply[i], name=f\"supply_constraint_{i}\")\n\n# Add constraints for meeting demand at each destination\nfor j in range(DestinationNum):\n    model.addConstr(\n        gp.quicksum(QuantityShipped[i, j] for i in range(OriginNum)) >= Demand[j],\n        name=f\"meet_demand_{j}\"\n    )\n\n# The non-negativity constraint is already enforced by default when creating the variables\n# QuantityShipped = model.addVars(OriginNum, DestinationNum, vtype=gp.GRB.CONTINUOUS, name=\"QuantityShipped\")\n# Gurobi automatically sets lower bounds of continuous variables to 0 unless specified otherwise\n\n# Set objective\nmodel.setObjective(gp.quicksum(Cost[i,j] * QuantityShipped[i,j] for i in range(OriginNum) for j in range(DestinationNum)), gp.GRB.MINIMIZE)\n\n# Optimize model\nmodel.optimize()\n\n\n# Get model status\nstatus = model.status\n\nobj_val = None\n# check whether the model is infeasible, has infinite solutions, or has an optimal solution\nif status == gp.GRB.INFEASIBLE:\n    obj_val = \"infeasible\"\nelif status == gp.GRB.INF_OR_UNBD:\n    obj_val = \"infeasible or unbounded\"\nelif status == gp.GRB.UNBOUNDED:\n    obj_val = \"unbounded\"\nelif status == gp.GRB.OPTIMAL:\n    obj_val = model.objVal\n\n"
+    }
+]

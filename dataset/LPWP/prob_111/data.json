@@ -1,0 +1,14 @@
+[
+    {
+        "input": {
+            "crab_cakes": 16,
+            "lobster_roll": 0,
+            "constraint1": 80,
+            "constraint2": 100
+
+        },
+        "output": [
+            64
+        ]
+    }
+]

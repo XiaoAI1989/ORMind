@@ -1,0 +1,23 @@
+[
+    {
+        "input": {
+            "ElementNum": 2,
+            "CoefficientA": [
+                200,
+                140
+            ],
+            "ProfitCoefficientC": [
+                25,
+                30
+            ],
+            "UpperBoundU": [
+                6000,
+                4000
+            ],
+            "GlobalParameterB": 40
+        },
+        "output": [
+            192000.0
+        ]
+    }
+]

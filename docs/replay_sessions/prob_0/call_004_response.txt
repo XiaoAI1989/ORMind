@@ -1,0 +1,3 @@
+1. Root cause: PuLP's LpVariable objects do not support the strict '<' comparison operator. Only '<=', '>=' and '==' create valid constraints.
+2. Problematic code section: prob += (num_sled_dog_trips < num_truck_trips)
+Fix: since both variables are integers, rewrite the strict inequality as prob += (num_sled_dog_trips <= num_truck_trips - 1).

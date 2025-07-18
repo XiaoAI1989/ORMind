@@ -1,0 +1,58 @@
+{
+    "description": "Consider a diet problem. Given a set of nutrients \\param{NutrientCount} and a set of foods \\param{FoodCount}. Each food j has a cost \\param{Cost_j} and a range of amount that can be bought [\\param{FoodMin_j}, \\param{FoodMax_j}]. Each nutrient i has a range of amount that should be included in the diet [\\param{NutrientMin_i}, \\param{NutrientMax_i}]. The amount of nutrient i in food j is \\param{AmountNutrient_{i, j}}. The problem aims to minimize the total cost of buying foods. It is constrained that the total amount of each nutrient i in the bought foods should be within its range. How to decide the amount of each food j to buy?",
+    "parameters": [
+        {
+            "symbol": "NutrientCount",
+            "definition": "The number of different nutrients",
+            "shape": []
+        },
+        {
+            "symbol": "FoodCount",
+            "definition": "The number of different foods",
+            "shape": []
+        },
+        {
+            "symbol": "Cost",
+            "definition": "The cost of each food item",
+            "shape": [
+                "FoodCount"
+            ]
+        },
+        {
+            "symbol": "FoodMin",
+            "definition": "The minimum quantity of each food that can be bought",
+            "shape": [
+                "FoodCount"
+            ]
+        },
+        {
+            "symbol": "FoodMax",
+            "definition": "The maximum quantity of each food that can be bought",
+            "shape": [
+                "FoodCount"
+            ]
+        },
+        {
+            "symbol": "NutrientMin",
+            "definition": "The minimum required quantity of each nutrient",
+            "shape": [
+                "NutrientCount"
+            ]
+        },
+        {
+            "symbol": "NutrientMax",
+            "definition": "The maximum allowed quantity of each nutrient",
+            "shape": [
+                "NutrientCount"
+            ]
+        },
+        {
+            "symbol": "AmountNutrient",
+            "definition": "The amount of each nutrient in each food",
+            "shape": [
+                "FoodCount",
+                "NutrientCount"
+            ]
+        }
+    ]
+}

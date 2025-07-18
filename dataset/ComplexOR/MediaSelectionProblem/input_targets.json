@@ -1,0 +1,33 @@
+{
+    "background": "The main media selection problem is a problem of allocating advertising budgets between possible advertising outlets. Given a set of media options, it aims to determine which media should be selected so that all audiences are reached with minimum campaign cost. It does not matter if an audience is covered more than once, as long as it is covered at least once. Moreover, the company does not wish to spend more money on the campaign than necessary.",
+    "constraints": [
+        "Constraint ensuring that each target audience is covered"
+    ],
+    "objective": "Total cost of selected media",
+    "description": "The main media selection problem is a problem of allocating advertising budgets between possible advertising outlets. Given a set of media options, it aims to determine which media should be selected so that all audiences are reached with minimum campaign cost. It does not matter if an audience is covered more than once, as long as it is covered at least once. Moreover, the company does not wish to spend more money on the campaign than necessary.",
+    "parameters": [
+        {
+            "symbol": "TargetAudiences",
+            "definition": "The number of target audiences",
+            "shape": []
+        },
+        {
+            "symbol": "AdvertisingMedia",
+            "definition": "The number of advertising media",
+            "shape": []
+        },
+        {
+            "symbol": "Incidence",
+            "definition": "Audience `t` is covered by media `m`",
+            "shape": [
+                "TargetAudiences",
+                "AdvertisingMedia"
+            ]
+        },
+        {
+            "symbol": "CostOfMedia",
+            "definition": "Cost of media parameter",
+            "shape": ["TargetAudiences"]
+        }
+    ]
+}

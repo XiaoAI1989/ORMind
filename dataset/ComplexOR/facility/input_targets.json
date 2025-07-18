@@ -1,0 +1,86 @@
+{
+    "background": "The Main Facility Location model is a mathematical programming model that aims to optimize the location of facilities in a distribution system. The model considers different locations, commodities, product plants, distribution centers, and customer zones. It takes into account parameters such as supply, demand, maximum and minimum throughput, unit throughput cost, fixed throughput cost, and variable cost. The model includes variables to represent the shipment, selection, and service of commodities. It also includes constraints to ensure supply and demand balance, throughput constraints, and allocation constraints. The objective of the model is to minimize the total cost of the distribution system.",
+    "constraints": [
+        "the total amount of commodity `c` shipped from plant `p` cannot exceed its supply",
+        "ensuring demand can be satisfied",
+        "the throughput of distribution center `d` is no smaller than its minimum throughput",
+        "the throughput of distribution center `d`",
+        "the throughput of distribution center `d` is no larger than its maximum throughput",
+        "Constraint ensuring allocation to one distribution center"
+    ],
+    "objective": "minimize the total cost of the distribution system",
+    "description": "The Main Facility Location model is a mathematical programming model that aims to optimize the location of facilities in a distribution system. The model considers different locations, commodities, product plants, distribution centers, and customer zones. It takes into account parameters such as supply, demand, maximum and minimum throughput, unit throughput cost, fixed throughput cost, and variable cost. The model includes variables to represent the shipment, selection, and service of commodities. It also includes constraints to ensure supply and demand balance, throughput constraints, and allocation constraints. The objective of the model is to minimize the total cost of the distribution system.",
+    "parameters": [
+        {
+            "symbol": "Locations",
+            "definition": "The number of locations",
+            "shape": []
+        },
+        {
+            "symbol": "Commodities",
+            "definition": "The number of commodities",
+            "shape": []
+        },
+        {
+            "symbol": "ProductPlants",
+            "definition": "the number of the Subset of locations representing product plants",
+            "shape": []
+        },
+        {
+            "symbol": "DistributionCenters",
+            "definition": "the number of locations representing distribution centers",
+            "shape": []
+        },
+        {
+            "symbol": "CustomerZones",
+            "definition": "the number of locations representing customer zones",
+            "shape": []
+        },
+        {
+            "symbol": "Supply",
+            "definition": "supply of commodity `c` at location `l`",
+            "shape": [
+                "Commodities",
+                "Locations"
+            ]
+        },
+        {
+            "symbol": "Demand",
+            "definition": "demand of commodity `c` at location `l`",
+            "shape": [
+                "Commodities",
+                "Locations"
+            ]
+        },
+        {
+            "symbol": "MaxThroughput",
+            "definition": "maximum throughput at location `l`",
+            "shape": ["Locations"]
+        },
+        {
+            "symbol": "MinThroughput",
+            "definition": "minimum throughput at location `l`",
+            "shape": ["Locations"]
+        },
+        {
+            "symbol": "UnitThroughputCost",
+            "definition": "unit throughput cost at location `l`",
+            "shape": ["Locations"]
+        },
+        {
+            "symbol": "FixedThroughputCost",
+            "definition": "fixed throughput cost at location `l`",
+            "shape": ["Locations"]
+        },
+        {
+            "symbol": "VariableCost",
+            "definition": "variable cost of commodity `c` at product plant `p`, distribution center `d`, and customer zone `z`",
+            "shape": [
+                "Commodities",
+                "ProductPlants",
+                "DistributionCenters",
+                "CustomerZones"
+            ]
+        }
+    ]
+}

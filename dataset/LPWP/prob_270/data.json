@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "smoothie": 2.0,
+            "protein_bar": 4.0
+        },
+        "output": [
+            32.0
+        ]
+    }
+]

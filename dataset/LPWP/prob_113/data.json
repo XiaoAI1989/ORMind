@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "children_vaccines": 50,
+            "adult_vaccines": 117.0
+        },
+        "output": [
+            11275.0
+        ]
+    }
+]

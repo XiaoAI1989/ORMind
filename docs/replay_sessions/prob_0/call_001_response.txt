@@ -1,0 +1,5 @@
+{
+    "VARIABLES": "num_sled_dog_trips: non-negative integer representing the number of sled dog trips; num_truck_trips: non-negative integer representing the number of truck trips",
+    "CONSTRAINTS": "cost_per_trip_sled_dogs * num_sled_dog_trips + cost_per_trip_trucks * num_truck_trips <= budget_limit; num_sled_dog_trips < num_truck_trips",
+    "OBJECTIVE": "Maximize: fish_per_trip_sled_dogs * num_sled_dog_trips + fish_per_trip_trucks * num_truck_trips"
+}

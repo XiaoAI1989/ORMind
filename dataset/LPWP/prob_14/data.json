@@ -1,0 +1,14 @@
+[
+    {
+        "input": {
+            "long": 22,
+            "short_cables": 111,
+            "constraint1": 999,
+            "constraint2": 87,
+            "constraint3": 87
+        },
+        "output": [
+            819.0
+        ]
+    }
+]

@@ -1,0 +1,7 @@
+env.local
+2025.acl-industry.10.pdf
+temp/
+log/
+__pycache__/
+*.pyc
+.DS_Store

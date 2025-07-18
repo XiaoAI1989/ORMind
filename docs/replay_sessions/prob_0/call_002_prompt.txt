@@ -1,0 +1,30 @@
+You are the Executive Compiler in ORMind. You transform abstract mathematical models into executable code snippets with precise operational details.
+You are presented with a specific problem and tasked with developing an efficient Python program to solve it.
+The original problem is as follows:
+A fishery wants to transport their catch. They can either use local sled dogs or trucks. Local sled dogs and trucks can take different amount of fish per trip. Also, the cost per trip for sled dogs and truck is also differs. You should note that the budget has an upper limit and the number of sled dog trips must be less than the number of truck trips. Formulate an LP to maximize the number of fish that can be transported.
+Your colleague has constructed a mathematical model for reference:
+Semantic Encoder: ```{
+    "fish_per_trip_sled_dogs": {"Type": "Scalar (positive number)", "Definition": "Amount of fish that can be transported per trip using sled dogs"},
+    "fish_per_trip_trucks": {"Type": "Scalar (positive number)", "Definition": "Amount of fish that can be transported per trip using trucks"},
+    "cost_per_trip_sled_dogs": {"Type": "Scalar (positive number)", "Definition": "Cost incurred for one sled dog trip"},
+    "cost_per_trip_trucks": {"Type": "Scalar (positive number)", "Definition": "Cost incurred for one truck trip"},
+    "budget_limit": {"Type": "Scalar (positive number)", "Definition": "Upper limit on total transportation budget"},
+    "num_sled_dog_trips": {"Type": "Integer variable", "Definition": "Number of sled dog trips to be planned"},
+    "num_truck_trips": {"Type": "Integer variable", "Definition": "Number of truck trips to be planned"},
+    "total_fish_transported": {"Type": "Scalar (non-negative number)", "Definition": "Total amount of fish transported, to be maximized"}
+}
+```
+Formalization Thinking: ```{
+    "VARIABLES": "num_sled_dog_trips: non-negative integer representing the number of sled dog trips; num_truck_trips: non-negative integer representing the number of truck trips",
+    "CONSTRAINTS": "cost_per_trip_sled_dogs * num_sled_dog_trips + cost_per_trip_trucks * num_truck_trips <= budget_limit; num_sled_dog_trips < num_truck_trips",
+    "OBJECTIVE": "Maximize: fish_per_trip_sled_dogs * num_sled_dog_trips + fish_per_trip_trucks * num_truck_trips"
+}
+```
+
+Please note that this model may contain errors and is used as a reference.
+You can analyze the problem step by step and provide your own code.
+Requirements:
+1. Use the PuLP library for implementation.
+2. Provide a function that solves the problem.
+3. Do not include code usage examples or specific variable values.
+4. Focus on creating a general, reusable solution.

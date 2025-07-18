@@ -1,0 +1,25 @@
+```python
+from pulp import *
+
+def prob_123(painkillers, sleeping_pills):
+    """
+    Args:
+        painkillers: an integer, representing the number of painkiller pills
+        sleeping_pills: an integer, representing the number of sleeping pills
+    Returns:
+        amount_of_digestive_medicine: an integer, representing the total amount of digestive medicine needed
+    """
+    problem = LpProblem("Pharmacy Optimization Problem", LpMinimize)
+
+    painkillers_var = LpVariable("painkillers", lowBound=50, cat='Integer')
+    sleeping_pills_var = LpVariable("sleeping_pills", lowBound=0, cat='Integer')
+
+    problem += 3*painkillers_var + 5*sleeping_pills_var
+
+    problem += 10*painkillers_var + 6*sleeping_pills_var <= 3000
+    problem += sleeping_pills_var >= 0.7*(painkillers_var + sleeping_pills_var)
+
+    problem.solve()
+
+    return (problem.objective.value(), int(painkillers_var.varValue), int(sleeping_pills_var.varValue))
+```

@@ -1,0 +1,37 @@
+{
+    "description": "This is a transportation problem where there are multiple origins \\param{NumberOfOrigins} and destinations \\param{NumberOfDestinations}. Each origin has a certain supply \\param{SupplyOfOrigin}, and each destination has a certain demand \\param{DemandOfDestination}. The goal is to minimize the total cost of transportation \\param{TransportationCost}. The cost of transporting from an origin i to a destination j is given by \\param{CostPerUnit_{i,j}}. The problem is subject to the constraints that the total supply from each origin and the total demand at each destination must be met.",
+    "parameters": [
+        {
+            "symbol": "NumberOfOrigins",
+            "definition": "The total number of origins",
+            "shape": []
+        },
+        {
+            "symbol": "NumberOfDestinations",
+            "definition": "The total number of destinations",
+            "shape": []
+        },
+        {
+            "symbol": "SupplyOfOrigin",
+            "definition": "The supply available at each origin",
+            "shape": [
+                "NumberOfOrigins"
+            ]
+        },
+        {
+            "symbol": "DemandOfDestination",
+            "definition": "The demand that needs to be satisfied at each destination",
+            "shape": [
+                "NumberOfDestinations"
+            ]
+        },
+        {
+            "symbol": "CostPerUnit",
+            "definition": "The cost of transporting a unit from each origin to each destination",
+            "shape": [
+                "NumberOfOrigins",
+                "NumberOfDestinations"
+            ]
+        }
+    ]
+}

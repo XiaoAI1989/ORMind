@@ -1,0 +1,66 @@
+{
+    "description": "Lot-sizing problems are production planning problems where \\param{Periods} are predefined and production of an item during a \\param{Periods} involves a discrete event such as the payment of a cost or the loss of production capacity. These events can occur due to the placement of an order or the set-up, startup, or changeover of a machine. The demand for each of the \\param{Items} across each period is represented by \\param{Demand_{i,j}}, while the total production capacity available in each period is defined by \\param{TotalPeriodCapacity_j}. Each item has a specific capacity \\param{ItemCapacity_{i,j}} which could decrease in each period due to mentioned events. Holding costs for items are indicated by \\param{HoldingCost_i}, while backorder costs and fixed order costs are represented by \\param{BackorderCost_i} and \\param{FixedCost_i}, respectively. The initial stock of each item is provided by \\param{InitialStock_i}.",
+    "parameters": [
+        {
+            "symbol": "Items",
+            "definition": "The number of distinct items",
+            "shape": []
+        },
+        {
+            "symbol": "Periods",
+            "definition": "The number of predefined periods",
+            "shape": []
+        },
+        {
+            "symbol": "Demand",
+            "definition": "The demand for each item across each period",
+            "shape": [
+                "Items",
+                "Periods"
+            ]
+        },
+        {
+            "symbol": "TotalPeriodCapacity",
+            "definition": "The total production capacity available in each period",
+            "shape": [
+                "Periods"
+            ]
+        },
+        {
+            "symbol": "ItemCapacity",
+            "definition": "The specific production capacity of each item",
+            "shape": [
+                "Items",
+                "Periods"
+            ]
+        },
+        {
+            "symbol": "HoldingCost",
+            "definition": "The holding cost for each item",
+            "shape": [
+                "Items"
+            ]
+        },
+        {
+            "symbol": "BackorderCost",
+            "definition": "The backorder cost for each item",
+            "shape": [
+                "Items"
+            ]
+        },
+        {
+            "symbol": "FixedCost",
+            "definition": "The fixed order cost for each item",
+            "shape": [
+                "Items"
+            ]
+        },
+        {
+            "symbol": "InitialStock",
+            "definition": "The initial stock for each item",
+            "shape": [
+                "Items"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "description": "Consider a problem where we have a set \\param{ElementSet}. For each element j in \\param{ElementSet}, we have a parameter \\param{CoefficientA_j}, a parameter \\param{ProfitCoefficientC_j}, and a parameter \\param{UpperBoundU_j}. We also have a global parameter \\param{GlobalParameterB}. We have a variable \\param{DecisionVariableX_j} for each j in \\param{ElementSet}. The goal is to maximize the total profit, which is the sum of \\param{ProfitCoefficientC_j} * \\param{DecisionVariableX_j} for all j in \\param{ElementSet}. The constraints are that the sum of (1/\\param{CoefficientA_j}) * \\param{DecisionVariableX_j} for all j in \\param{ElementSet} should be less than or equal to \\param{GlobalParameterB}, and \\param{DecisionVariableX_j} should be between 0 and \\param{UpperBoundU_j} for all j in \\param{ElementSet}.",
+    "parameters": [
+        {
+            "symbol": "ElementSet",
+            "definition": "The set of elements",
+            "shape": []
+        },
+        {
+            "symbol": "CoefficientA",
+            "definition": "A coefficient parameter for each element in the set",
+            "shape": [
+                "ElementSet"
+            ]
+        },
+        {
+            "symbol": "ProfitCoefficientC",
+            "definition": "Profit coefficient for each element in the set",
+            "shape": [
+                "ElementSet"
+            ]
+        },
+        {
+            "symbol": "UpperBoundU",
+            "definition": "Upper bound on the decision variable for each element in the set",
+            "shape": [
+                "ElementSet"
+            ]
+        },
+        {
+            "symbol": "GlobalParameterB",
+            "definition": "A global parameter representing an upper limit on the weighted sum of decision variables",
+            "shape": []
+        }
+    ]
+}

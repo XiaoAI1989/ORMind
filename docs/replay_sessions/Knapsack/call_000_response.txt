@@ -1,0 +1,6 @@
+{
+    "TotalItems": {"Type": "Integer", "Definition": "The total number of available items to consider for selection"},
+    "ItemValues": {"Type": "Array of Numbers, Shape: TotalItems", "Definition": "The value of each item"},
+    "ItemWeights": {"Type": "Array of Numbers, Shape: TotalItems", "Definition": "The weight of each item"},
+    "MaxKnapsackWeight": {"Type": "Number", "Definition": "The maximum weight capacity of the knapsack"}
+}

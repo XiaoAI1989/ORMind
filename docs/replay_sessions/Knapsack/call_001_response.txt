@@ -1,0 +1,5 @@
+{
+    "VARIABLES": "Let x_i in {0, 1} for i = 1..TotalItems, where x_i = 1 if item i is selected, 0 otherwise. Each x_i is a binary variable.",
+    "CONSTRAINTS": "1. sum(i=1 to TotalItems) ItemWeights[i] * x_i <= MaxKnapsackWeight\n2. x_i in {0, 1} for all i\n3. sum(i=1 to TotalItems) x_i <= TotalItems",
+    "OBJECTIVE": "Maximize sum(i=1 to TotalItems) ItemValues[i] * x_i"
+}

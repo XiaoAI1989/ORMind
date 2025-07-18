@@ -1,0 +1,31 @@
+[
+    {
+        "input": {
+            "ProductNum": 3,
+            "ProductionRate": [
+                200,
+                140,
+                160
+            ],
+            "ProfitPerTon": [
+                25,
+                30,
+                29
+            ],
+            "MinimumSale": [
+                1000,
+                500,
+                750
+            ],
+            "MaximumSale": [
+                6000,
+                4000,
+                3500
+            ],
+            "AvailableHours": 40
+        },
+        "output": [
+            194828.5706
+        ]
+    }
+]

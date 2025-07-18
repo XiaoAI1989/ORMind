@@ -1,0 +1,66 @@
+```python
+from pulp import LpProblem, LpVariable, LpMinimize, lpSum, value
+
+def solve_pharmacy_pill_optimization():
+    """
+    Solves the pharmacy pill manufacturing optimization problem.
+
+    Minimizes total digestive medicine needed while satisfying constraints on:
+    - Available morphine
+    - Minimum painkiller pills production
+    - Sleeping pill ratio requirement
+
+    Returns:
+        dict: Solution containing painkiller_count, sleeping_pill_count,
+              total_digestive_medicine, and solver status
+    """
+
+    # Problem parameters
+    morphine_available = 3000  # mg
+    morphine_per_painkiller = 10  # mg
+    digestive_medicine_per_painkiller = 3  # units
+    morphine_per_sleeping_pill = 6  # mg
+    digestive_medicine_per_sleeping_pill = 5  # units
+    min_painkiller_pills = 50
+    sleeping_pill_ratio = 0.7  # 70%
+
+    # Create optimization problem
+    problem = LpProblem("Pharmacy_Pill_Optimization", LpMinimize)
+
+    # Decision variables
+    painkiller_count = LpVariable("painkiller_pills", lowBound=0, cat="Integer")
+    sleeping_pill_count = LpVariable("sleeping_pills", lowBound=0, cat="Integer")
+
+    # Objective function: Minimize total digestive medicine
+    problem += digestive_medicine_per_painkiller * painkiller_count + \
+              digestive_medicine_per_sleeping_pill * sleeping_pill_count, \
+              "Total_Digestive_Medicine"
+
+    # Constraints
+    # 1. Morphine availability constraint
+    problem += morphine_per_painkiller * painkiller_count + \
+              morphine_per_sleeping_pill * sleeping_pill_count <= morphine_available, \
+              "Morphine_Constraint"
+
+    # 2. Minimum painkiller pills constraint
+    problem += painkiller_count >= min_painkiller_pills, \
+              "Min_Painkiller_Constraint"
+
+    # 3. Sleeping pill ratio constraint: y >= 0.7(x + y)
+    # Rearranged: y - 0.7x - 0.7y >= 0 => 0.3y >= 0.7x => 3y >= 7x
+    problem += 3 * sleeping_pill_count >= 7 * painkiller_count, \
+              "Sleeping_Pill_Ratio_Constraint"
+
+    # Solve the problem
+    problem.solve()
+
+    # Extract results
+    solution = {
+        "painkiller_count": int(value(painkiller_count)),
+        "sleeping_pill_count": int(value(sleeping_pill_count)),
+        "total_digestive_medicine": value(problem.objective),
+        "status": problem.status
+    }
+
+    return solution
+```

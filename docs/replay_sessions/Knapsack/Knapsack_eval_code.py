@@ -1,0 +1,40 @@
+import numpy as np
+
+def counterfactual_solution_analysis(x, data):
+    TotalItems = data["TotalItems"]
+    ItemValues = np.array(data["ItemValues"])
+    ItemWeights = np.array(data["ItemWeights"])
+    MaxKnapsackWeight = data["MaxKnapsackWeight"]
+
+    x_array = np.array([x.get(i, 0) for i in range(TotalItems)])
+
+    modifications = {
+        "Modification1": {
+            "check": lambda: all(x_array >= 0),
+            "message": "Adjust non-negativity constraint to allow negative quantities: {}".format(x_array)
+        },
+        "Modification2": {
+            "check": lambda: np.dot(ItemWeights, x_array) <= MaxKnapsackWeight,
+            "message": "Increase MaxKnapsackWeight to: {}".format(np.dot(ItemWeights, x_array))
+        },
+        "Modification3": {
+            "check": lambda: all(x_array <= 1),
+            "message": "Allow fractional or multiple item quantities: {}".format(x_array)
+        }
+    }
+
+    results = {}
+    all_valid = True
+
+    for name, modification in modifications.items():
+        needed = not modification["check"]()
+        results[name] = {
+            "modification_needed": needed,
+            "suggestion": modification["message"] if needed else None
+        }
+        if needed:
+            all_valid = False
+
+    results["solution_valid_without_changes"] = all_valid
+
+    return results

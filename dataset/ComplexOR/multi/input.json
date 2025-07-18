@@ -1,0 +1,40 @@
+{
+    "description": "This is a multi-commodity transportation problem. Given a set of origins \\param{OriginNum}, a set of destinations \\param{DestinationNum}, and a set of products \\param{ProductNum}. Each origin i has a certain supply of each product p, \\param{Supply}_{i,p}, and each destination j has a certain demand for each product p, \\param{Demand}_{j,p}. The cost of shipping one unit of product p from origin i to destination j is \\param{Cost}_{i, j, p}. The problem aims to minimize the total cost of shipping all products from the origins to the destinations. It is constrained that the total amount of each product p shipped from each origin i equals its supply, the total amount of each product p shipped to each destination j equals its demand, and the total amount of all products shipped from each origin i to each destination j does not exceed a certain limit \\param{Limit}_{i,j}. The decision variable is the number of units of each product p to be shipped from each origin i to each destination j.",
+    "parameters": [
+        {
+            "symbol": "OriginNum",
+            "definition": "The number of origins",
+            "shape": []
+        },
+        {
+            "symbol": "DestinationNum",
+            "definition": "The number of destinations",
+            "shape": []
+        },
+        {
+            "symbol": "ProductNum",
+            "definition": "The number of products",
+            "shape": []
+        },
+        {
+            "symbol": "Supply",
+            "definition": "The supply of each product at each origin",
+            "shape": ["OriginNum", "ProductNum"]
+        },
+        {
+            "symbol": "Demand",
+            "definition": "The demand of each product at each destination",
+            "shape": ["ProductNum", "DestinationNum"]
+        },
+        {
+            "symbol": "Limit",
+            "definition": "The limit on the total amount of all products shipped from each origin to each destination",
+            "shape": ["OriginNum", "DestinationNum"]
+        },
+        {
+            "symbol": "Cost",
+            "definition": "The cost of shipping one unit of each product from each origin to each destination",
+            "shape": ["OriginNum", "DestinationNum", "ProductNum"]
+        }
+    ]
+}

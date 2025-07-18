@@ -1,0 +1,34 @@
+```python
+from pulp import LpProblem, LpMaximize, LpVariable, lpSum, value, LpStatus
+
+def solve_fishery_transport(fish_per_trip_sled_dogs, fish_per_trip_trucks,
+                           cost_per_trip_sled_dogs, cost_per_trip_trucks,
+                           budget_limit):
+    # Create optimization problem
+    prob = LpProblem("Fishery_Transport", LpMaximize)
+
+    # Define decision variables (non-negative integers)
+    num_sled_dog_trips = LpVariable("sled_dog_trips", lowBound=0, cat='Integer')
+    num_truck_trips = LpVariable("truck_trips", lowBound=0, cat='Integer')
+
+    # Objective function: maximize total fish transported
+    prob += (fish_per_trip_sled_dogs * num_sled_dog_trips +
+             fish_per_trip_trucks * num_truck_trips)
+
+    # Constraint 1: Budget limit
+    prob += (cost_per_trip_sled_dogs * num_sled_dog_trips +
+             cost_per_trip_trucks * num_truck_trips <= budget_limit)
+
+    # Constraint 2: Sled dog trips must be strictly less than truck trips
+    prob += (num_sled_dog_trips < num_truck_trips)
+
+    # Solve the problem
+    prob.solve(PULP_CBC_CMD(msg=0))
+
+    return {
+        'status': LpStatus[prob.status],
+        'num_sled_dog_trips': int(value(num_sled_dog_trips)),
+        'num_truck_trips': int(value(num_truck_trips)),
+        'total_fish': value(prob.objective)
+    }
+```

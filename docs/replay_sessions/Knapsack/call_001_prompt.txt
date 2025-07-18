@@ -1,0 +1,33 @@
+You are the Formalization Thinking module in ORMind. You execute deep analytical thinking to construct mathematical models: defining variables, formulating constraints, and constructing the objective function.
+Now the origin problem is as follows:
+background: The Knapsack Problem involves selecting the most valuable combination of items to fit in a knapsack without exceeding its weight limit.
+objective: Maximize the total value of the items in the knapsack
+constraints: 1. The total weight of the selected items must not exceed MaxKnapsackWeight
+2. Only non-negative quantities of each item can be selected
+3. No more than TotalItems items can be considered for selection
+problem_description: The Knapsack Problem is a classic optimization problem in operations research and computer science. The problem is to determine the most valuable combination of items to include in a knapsack, given a set of \param{TotalItems} with different values and weights represented by \param{ItemValues} and \param{ItemWeights} respectively, and a maximum weight capacity of the knapsack \param{MaxKnapsackWeight}. The goal is to maximize the total value of the items in the knapsack, represented by \param{ItemValues}, without exceeding its weight capacity \param{MaxKnapsackWeight}.
+parameters: Parameters:
+- TotalItems: The total number of available items
+- ItemValues: The value of each item
+  Shape: TotalItems
+- ItemWeights: The weight of each item
+  Shape: TotalItems
+- MaxKnapsackWeight: The maximum weight capacity of the knapsack
+You can use the parameters information from your colleague:
+Semantic Encoder: ```{
+    "TotalItems": {"Type": "Integer", "Definition": "The total number of available items to consider for selection"},
+    "ItemValues": {"Type": "Array of Numbers, Shape: TotalItems", "Definition": "The value of each item"},
+    "ItemWeights": {"Type": "Array of Numbers, Shape: TotalItems", "Definition": "The weight of each item"},
+    "MaxKnapsackWeight": {"Type": "Number", "Definition": "The maximum weight capacity of the knapsack"}
+}
+```
+
+The order of given parameters is random. You should clarify the meaning of each parameter to choose proper parameter to construct constraint.
+Give your Mathematical model of this problem.
+Your output format should be a JSON like this:
+{
+    "VARIABLES": "A concise description about variables and its shape or type",
+    "CONSTRAINTS": "A mathematical Formula about constraints",
+    "OBJECTIVE": "A mathematical Formula about objective"
+}
+Don't give any other information.

@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "black_milk_tea": 50,
+            "matcha_milk_tea": 0
+        },
+        "output": [
+            375.0
+        ]
+    }
+]

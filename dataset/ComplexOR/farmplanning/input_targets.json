@@ -1,0 +1,122 @@
+{
+    "background": "The Farm Planning model aims to optimize the planning of crops and resources on a farm in order to maximize earnings. The model takes into account various factors such as crop yield, crop price, land availability, labor requirements, water availability, and costs associated with labor and water. The objective is to determine the optimal amount of each crop to plant in order to maximize farm earnings.",
+    "constraints": [
+        "Constraint on land limitations",
+        "Constraint on labor requirements",
+        "Constraint on water requirements 1",
+        "Constraint on water requirements 2",
+        "Constraint on family consumption 1",
+        "Constraint on family consumption 2"
+    ],
+    "objective": "maximize farm earnings",
+    "description": "The Farm Planning model aims to optimize the planning of crops and resources on a farm in order to maximize earnings. The model takes into account various factors such as crop yield, crop price, land availability, labor requirements, water availability, and costs associated with labor and water. The objective is to determine the optimal amount of each crop to plant in order to maximize farm earnings.",
+    "parameters": [
+        {
+            "symbol": "Crops",
+            "definition": "The number of crops available for planting",
+            "shape": []
+        },
+        {
+            "symbol": "Months",
+            "definition": "The number of months in a year",
+            "shape": []
+        },
+        {
+            "symbol": "ConsumptionBundles",
+            "definition": "The number of consumption bundles",
+            "shape": []
+        },
+        {
+            "symbol": "Yield",
+            "definition": "Crop `c` yield in tons per hectare",
+            "shape": ["Crops"]
+        },
+        {
+            "symbol": "Price",
+            "definition": "Crop `c` price in dollars per ton",
+            "shape": ["Crops"]
+        },
+        {
+            "symbol": "AmountInBundle",
+            "definition": "Amount of crop `c` in consumption bundle `b` in tons",
+            "shape": [
+                "Crops",
+                "ConsumptionBundles"
+            ]
+        },
+        {
+            "symbol": "LandAvailable",
+            "definition": "Total land available for planting in hectares",
+            "shape": []
+        },
+        {
+            "symbol": "BP_land",
+            "definition": "Binary parameter indicating whether a crop is planted or not",
+            "shape": ["Crops"]
+        },
+        {
+            "symbol": "FractionOccupiesLand",
+            "definition": "Fraction of land occupied by crop `c` in month `t`",
+            "shape": [
+                "Months",
+                "Crops"
+            ]
+        },
+        {
+            "symbol": "LaborRequired",
+            "definition": "Labor required per hectare for each crop in each month",
+            "shape": [
+                "Months",
+                "Crops"
+            ]
+        },
+        {
+            "symbol": "AnnualWageRateFamilyLabor",
+            "definition": "Annual wage rate for family labor in dollars per man",
+            "shape": []
+        },
+        {
+            "symbol": "AnnualWageRatePermanentLabor",
+            "definition": "Annual wage rate for permanent labor in dollars per man",
+            "shape": []
+        },
+        {
+            "symbol": "HourlyWageRateTemporaryLabor",
+            "definition": "Hourly wage rate for temporary labor in dollars per hour",
+            "shape": []
+        },
+        {
+            "symbol": "WorkingHours",
+            "definition": "Number of working hours available per month per man",
+            "shape": ["Months"]
+        },
+        {
+            "symbol": "FamilyLaborAvailable",
+            "definition": "Number of family laborers available",
+            "shape": []
+        },
+        {
+            "symbol": "AnnualAmountOfWaterAvailable",
+            "definition": "Annual amount of water available in cubic kilometers",
+            "shape": []
+        },
+        {
+            "symbol": "WaterLimit",
+            "definition": "Maximum amount of water available per month in cubic kilometers",
+            "shape": ["Months"]
+        },
+        {
+            "symbol": "WaterRequirement",
+            "definition": "Water requirement per hectare for each crop in each month in cubic kilometers",
+            "shape": [
+                "Months",
+                "Crops"
+            ]
+        },
+        {
+            "symbol": "PriceOfWater",
+            "definition": "Price of water in dollars per cubic kilometer",
+            "shape": []
+        }
+    ]
+}

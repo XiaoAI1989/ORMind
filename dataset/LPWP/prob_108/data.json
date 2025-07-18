@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "regular_batch": 32,
+            "premium_batch": 35
+        },
+        "output": [
+            2650
+        ]
+    }
+]

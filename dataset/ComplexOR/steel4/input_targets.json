@@ -1,0 +1,59 @@
+{
+    "background": "A production problem involving a set of products being manufactured over multiple stages, where each product has a defined production rate per stage and profit margin, and each stage has limited available time.",
+    "constraints": [
+        "Number of tons of each product p is non-negative",
+        "Total hours used in each stage s by all products cannot exceed StageAvailability_s",
+        "Each product p has a minimum production commitment of MinCommitment_p tons per week",
+        "Each product p has a maximum market limit of MaxMarketLimit_p tons per week"
+    ],
+    "objective": "Maximize the total profit from all the products produced",
+    "description": "Consider a production problem. Given a set of products \\param{NumProducts} and a set of stages \\param{NumStages}. Each product p has a certain production rate \\param{ProductionRate_{p,s}} in each stage s and a certain profit \\param{ProfitPerTon_p} per ton. Each stage s has a certain number of hours \\param{StageAvailability_s} available per week. There are also lower and upper limits on the tons of each product sold in a week, \\param{MinCommitment_p} and \\param{MaxMarketLimit_p} respectively. The problem aims to maximize the total profit from all products. It is constrained that the total number of hours used by all products in each stage s may not exceed the hours available. How to decide the number of tons to be produced for each product p?",
+    "parameters": [
+        {
+            "symbol": "NumProducts",
+            "definition": "The number of different products",
+            "shape": []
+        },
+        {
+            "symbol": "NumStages",
+            "definition": "The number of different stages",
+            "shape": []
+        },
+        {
+            "symbol": "ProductionRate",
+            "definition": "The production rate of product p in stage s",
+            "shape": [
+                "NumProducts",
+                "NumStages"
+            ]
+        },
+        {
+            "symbol": "ProfitPerTon",
+            "definition": "The profit per ton for each product",
+            "shape": [
+                "NumProducts"
+            ]
+        },
+        {
+            "symbol": "MinCommitment",
+            "definition": "The minimum number of tons of product p that can be sold in a week",
+            "shape": [
+                "NumProducts"
+            ]
+        },
+        {
+            "symbol": "MaxMarketLimit",
+            "definition": "The maximum market limit on the tons of product p sold in a week",
+            "shape": [
+                "NumProducts"
+            ]
+        },
+        {
+            "symbol": "StageAvailability",
+            "definition": "The number of hours available per week for each stage",
+            "shape": [
+                "NumStages"
+            ]
+        }
+    ]
+}

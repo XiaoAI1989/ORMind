@@ -1,0 +1,29 @@
+{
+    "background": "A set of jobs need to be processed on a set of machines in series, with each machine being able to work in parallel. Jobs must follow the same processing order through all machines, with the objective to minimize the total time to complete all jobs, known as the makespan.",
+    "constraints": [
+        "All jobs follow the same order from Machine 1 to MachineCount",
+        "Each machine can process only one job at a time"
+    ],
+    "objective": "Minimize the total makespan, which is the time when the last job is completed on the last machine",
+    "description": "A set of \\param{JobCount} jobs need to be processed on a set of \\param{MachineCount} machines in series. All jobs have the same processing order through all the machines, from machine 1 to machine \\param{MachineCount}. Each machine can work in parallel. The workflow is as follows: the first job of the sequence goes to the first machine to be processed; meanwhile, other jobs wait. When the first machine has processed the first job, it goes to the second machine, and the second job of the sequence starts to be processed by the first machine; this process continues in sequence. The time required to process job j on machine m is \\param{ProcessingTime_{j,m}}. The problem aims to minimize the total makespan, which is the time when all jobs have been processed. The goal is to find a sequence of jobs that minimizes the makespan.",
+    "parameters": [
+        {
+            "symbol": "JobCount",
+            "definition": "The total number of jobs to be processed",
+            "shape": []
+        },
+        {
+            "symbol": "MachineCount",
+            "definition": "The total number of machines available for processing",
+            "shape": []
+        },
+        {
+            "symbol": "ProcessingTime",
+            "definition": "The time required to process job j on machine m",
+            "shape": [
+                "JobCount",
+                "MachineCount"
+            ]
+        }
+    ]
+}

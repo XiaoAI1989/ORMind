@@ -1,0 +1,85 @@
+You are the Metacognitive Supervisor in ORMind. You monitor the entire solution generation process, format the final program, and make high-level adjustments when errors are detected.
+Your colleague Executive Compiler has given his answer:
+Semantic Encoder: ```{
+    "TotalItems": {"Type": "Integer", "Definition": "The total number of available items to consider for selection"},
+    "ItemValues": {"Type": "Array of Numbers, Shape: TotalItems", "Definition": "The value of each item"},
+    "ItemWeights": {"Type": "Array of Numbers, Shape: TotalItems", "Definition": "The weight of each item"},
+    "MaxKnapsackWeight": {"Type": "Number", "Definition": "The maximum weight capacity of the knapsack"}
+}
+```
+Formalization Thinking: ```{
+    "VARIABLES": "Let x_i in {0, 1} for i = 1..TotalItems, where x_i = 1 if item i is selected, 0 otherwise. Each x_i is a binary variable.",
+    "CONSTRAINTS": "1. sum(i=1 to TotalItems) ItemWeights[i] * x_i <= MaxKnapsackWeight\n2. x_i in {0, 1} for all i\n3. sum(i=1 to TotalItems) x_i <= TotalItems",
+    "OBJECTIVE": "Maximize sum(i=1 to TotalItems) ItemValues[i] * x_i"
+}
+```
+Executive Compiler: ``````python
+from pulp import LpProblem, LpVariable, LpMaximize, lpSum, LpBinary, value
+
+def solve_knapsack(TotalItems, ItemValues, ItemWeights, MaxKnapsackWeight):
+    # Create the optimization problem (maximization)
+    problem = LpProblem("Knapsack_Problem", LpMaximize)
+
+    # Decision variables: x_i in {0, 1} for each item
+    x = [LpVariable(f"item_{i}", cat=LpBinary) for i in range(TotalItems)]
+
+    # Objective function: maximize total value
+    problem += lpSum([ItemValues[i] * x[i] for i in range(TotalItems)])
+
+    # Constraint: total weight cannot exceed capacity
+    problem += (
+        lpSum([ItemWeights[i] * x[i] for i in range(TotalItems)])
+        <= MaxKnapsackWeight
+    )
+
+    # Solve the problem
+    problem.solve()
+
+    selected_items = [i for i in range(TotalItems) if value(x[i]) == 1]
+    total_value = value(problem.objective)
+    total_weight = sum(ItemWeights[i] for i in selected_items)
+
+    return {
+        'selected_items': selected_items,
+        'total_value': total_value,
+        'total_weight': total_weight,
+        'status': str(problem.status)
+    }
+```
+```
+
+This answer has not been formatted. You need to format the code as the example.
+The final code must has the same input args and function name as the code example:
+from pulp import *
+import numpy as np
+
+def solve(data):
+    TotalItems = data["TotalItems"]
+    ItemValues = np.array(data["ItemValues"])
+    ItemWeights = np.array(data["ItemWeights"])
+    MaxKnapsackWeight = data["MaxKnapsackWeight"]
+
+    prob = LpProblem("Knapsack Problem", LpMaximize)
+    x = LpVariable.dicts("Item", range(TotalItems), 0, 1, LpBinary)
+
+    ###########TODO##########
+
+    prob.solve()
+
+    if prob.status == LpStatusOptimal:
+        # Extract the optimized variables as values
+        optimized_vars = {
+            "x": {i: x[i].varValue for i in range(TotalItems)}
+        }
+        return {
+            "status": "Optimal",
+            "objective_value": value(prob.objective),
+            "optimized_vars": optimized_vars
+        }
+    else:
+        return {"status": LpStatus[prob.status]}
+You also need to return the optimized variables.
+Important: Your final code should strictly use same input args, function name and return style of the code example exactly.
+The function name must be "def solve(data):" and the return must be a dict with same key as example.
+You need to give your final answer in the Todo domain of example. Don't modify other contents in the example
+Don't forget to import the library. Don't give any example usage.

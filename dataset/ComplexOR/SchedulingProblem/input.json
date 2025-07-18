@@ -1,0 +1,63 @@
+{
+    "description": "The Employee Assignment Problem is a scheduling problem where the goal is to assign \\param{NumEmployees} employees to \\param{NumShifts} shifts in \\param{NumRestaurants} different restaurants based on their skills and preferences. Each employee has a set of skills out of \\param{NumSkills} possible skills, and each restaurant has a demand for skilled employees during each shift. The objective is to minimize the cost of the schedule, which includes the cost of unfulfilled positions (each weighted by \\param{UnfulfilledPositionWeight}) and the cost of assigning employees to less preferred positions (indicated by their preference levels for each skill).",
+    "parameters": [
+        {
+            "symbol": "NumRestaurants",
+            "definition": "The number of restaurants",
+            "shape": []
+        },
+        {
+            "symbol": "NumEmployees",
+            "definition": "The number of employees",
+            "shape": []
+        },
+        {
+            "symbol": "NumShifts",
+            "definition": "The number of shifts",
+            "shape": []
+        },
+        {
+            "symbol": "NumSkills",
+            "definition": "The total number of skills that employees can have",
+            "shape": []
+        },
+        {
+            "symbol": "Demand",
+            "definition": "The demand for employees with specific skills at each restaurant during each shift",
+            "shape": [
+                "NumRestaurants",
+                "NumShifts",
+                "NumSkills"
+            ]
+        },
+        {
+            "symbol": "EmployeeSkills",
+            "definition": "Binary indicator if an employee has a specific skill",
+            "shape": [
+                "NumEmployees",
+                "NumSkills"
+            ]
+        },
+        {
+            "symbol": "SkillPreference",
+            "definition": "Employee's preference level for each skill",
+            "shape": [
+                "NumEmployees",
+                "NumSkills"
+            ]
+        },
+        {
+            "symbol": "ShiftAvailability",
+            "definition": "Binary indicator if an employee is available for a specific shift",
+            "shape": [
+                "NumEmployees",
+                "NumShifts"
+            ]
+        },
+        {
+            "symbol": "UnfulfilledPositionWeight",
+            "definition": "The weighting factor for unfulfilled positions",
+            "shape": []
+        }
+    ]
+}

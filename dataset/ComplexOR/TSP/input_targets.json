@@ -1,0 +1,37 @@
+{
+    "background": "The problem is focused on allocating goods from multiple origins to multiple destinations, considering the individual supply limits at each origin and demand requirements at each destination, with the goal of minimizing the total transportation cost.",
+    "constraints": [
+        "Each origin i (where i is an index for origins) has a supply limit of Supply_i",
+        "Each destination j (where j is an index for destinations) requires Demand_j amount of goods",
+        "Amount of goods sent from any origin to any destination is non-negative"
+    ],
+    "objective": "Minimize the total transportation cost from origins to destinations",
+    "description": "The optimization problem is focused on efficiently allocating goods from a set of origins, denoted by \\param{OriginNum}, to a set of destinations, represented by \\param{DestinationNum}. Each originating point has a certain supply of goods, \\param{Supply_i}, where i is an origin. Correspondingly, each destination point has a specific demand, \\param{Demand_j}, where j is a destination. The cost associated with sending goods from origin i to destination j is represented by \\param{Cost_{i,j}}. The objective is to minimize the total transportation cost while meeting the demands at the destinations without exceeding the supplies at the origins.",
+    "parameters": [
+        {
+            "symbol": "OriginNum",
+            "definition": "The total number of origins",
+            "shape": []
+        },
+        {
+            "symbol": "DestinationNum",
+            "definition": "The total number of destinations",
+            "shape": []
+        },
+        {
+            "symbol": "Supply",
+            "definition": "The supply of goods available at each origin",
+            "shape": ["OriginNum"]
+        },
+        {
+            "symbol": "Demand",
+            "definition": "The demand for goods to be satisfied at each destination",
+            "shape": ["DestinationNum"]
+        },
+        {
+            "symbol": "Cost",
+            "definition": "The cost of transporting goods from origin i to destination j",
+            "shape": ["OriginNum", "DestinationNum"]
+        }
+    ]
+}

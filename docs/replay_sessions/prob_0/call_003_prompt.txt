@@ -1,0 +1,79 @@
+You are the Metacognitive Supervisor in ORMind. You monitor the entire solution generation process, format the final program, and make high-level adjustments when errors are detected.
+Your colleague Executive Compiler has given his answer:
+Semantic Encoder: ```{
+    "fish_per_trip_sled_dogs": {"Type": "Scalar (positive number)", "Definition": "Amount of fish that can be transported per trip using sled dogs"},
+    "fish_per_trip_trucks": {"Type": "Scalar (positive number)", "Definition": "Amount of fish that can be transported per trip using trucks"},
+    "cost_per_trip_sled_dogs": {"Type": "Scalar (positive number)", "Definition": "Cost incurred for one sled dog trip"},
+    "cost_per_trip_trucks": {"Type": "Scalar (positive number)", "Definition": "Cost incurred for one truck trip"},
+    "budget_limit": {"Type": "Scalar (positive number)", "Definition": "Upper limit on total transportation budget"},
+    "num_sled_dog_trips": {"Type": "Integer variable", "Definition": "Number of sled dog trips to be planned"},
+    "num_truck_trips": {"Type": "Integer variable", "Definition": "Number of truck trips to be planned"},
+    "total_fish_transported": {"Type": "Scalar (non-negative number)", "Definition": "Total amount of fish transported, to be maximized"}
+}
+```
+Formalization Thinking: ```{
+    "VARIABLES": "num_sled_dog_trips: non-negative integer representing the number of sled dog trips; num_truck_trips: non-negative integer representing the number of truck trips",
+    "CONSTRAINTS": "cost_per_trip_sled_dogs * num_sled_dog_trips + cost_per_trip_trucks * num_truck_trips <= budget_limit; num_sled_dog_trips < num_truck_trips",
+    "OBJECTIVE": "Maximize: fish_per_trip_sled_dogs * num_sled_dog_trips + fish_per_trip_trucks * num_truck_trips"
+}
+```
+Executive Compiler: ``````python
+from pulp import LpProblem, LpMaximize, LpVariable, lpSum, value, LpStatus
+
+def solve_fishery_transport(fish_per_trip_sled_dogs, fish_per_trip_trucks,
+                           cost_per_trip_sled_dogs, cost_per_trip_trucks,
+                           budget_limit):
+    # Create optimization problem
+    prob = LpProblem("Fishery_Transport", LpMaximize)
+
+    # Define decision variables (non-negative integers)
+    num_sled_dog_trips = LpVariable("sled_dog_trips", lowBound=0, cat='Integer')
+    num_truck_trips = LpVariable("truck_trips", lowBound=0, cat='Integer')
+
+    # Objective function: maximize total fish transported
+    prob += (fish_per_trip_sled_dogs * num_sled_dog_trips +
+             fish_per_trip_trucks * num_truck_trips)
+
+    # Constraint 1: Budget limit
+    prob += (cost_per_trip_sled_dogs * num_sled_dog_trips +
+             cost_per_trip_trucks * num_truck_trips <= budget_limit)
+
+    # Constraint 2: Sled dog trips must be strictly less than truck trips
+    prob += (num_sled_dog_trips < num_truck_trips)
+
+    # Solve the problem
+    prob.solve(PULP_CBC_CMD(msg=0))
+
+    return {
+        'status': LpStatus[prob.status],
+        'num_sled_dog_trips': int(value(num_sled_dog_trips)),
+        'num_truck_trips': int(value(num_truck_trips)),
+        'total_fish': value(prob.objective)
+    }
+```
+```
+
+This answer has not been formatted. You need to format the code as the example.
+The final code must has the same input args and function name as the code example:
+def prob_0(DogCapability,TruckCapability,DogCost,TruckCost,MaxBudget):
+    """
+
+    Args:
+        DogCapability: an integer, indicates the amount of fish which sled dogs can take per trip
+        TruckCapability: an integer, indicates the amount of fish which trucks can take per trip
+        DogCost: an integer, indicates the cost per trip for a sled dog
+        TruckCost: an integer, indicates the cost per trip for a truck
+        MaxBudget: an integer, denotes the upper limit of the budget
+
+    Returns:
+        FishTransported: an integer, denotes the amount of fish transported after calculation
+    """
+    # To be implemented
+    obj = 1e9
+    # To be implemented
+    return obj,var1,var2
+You also need to return the optimized variables.
+Important: Your final code should strictly use same input args, function name and return style of the code example exactly.
+Note: While certain parameters in the example may not be utilized, it is imperative to include all of them in the function definition.
+The function must return a tuple, with the first element being the objective value. A dictionary is not permitted as the return type.
+Don't forget to import the library. Don't give any example usage.

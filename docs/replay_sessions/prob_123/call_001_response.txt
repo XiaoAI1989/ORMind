@@ -1,0 +1,7 @@
+```json
+{
+    "VARIABLES": "Decision variables: x = number of painkiller pills (integer, non-negative); y = number of sleeping pills (integer, non-negative)",
+    "CONSTRAINTS": "1) Morphine constraint: 10x + 6y <= 3000\n2) Minimum painkiller pills: x >= 50\n3) Sleeping pill ratio: y >= 0.7(x + y), which simplifies to 7x <= 3y\n4) Non-negativity: x >= 0, y >= 0",
+    "OBJECTIVE": "Minimize total digestive medicine: Z = 3x + 5y"
+}
+```

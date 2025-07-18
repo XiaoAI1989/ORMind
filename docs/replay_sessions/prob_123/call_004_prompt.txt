@@ -1,0 +1,72 @@
+You are the System 2 Reasoner in ORMind. You provide deliberate verification through counterfactual reasoning and syntax error analysis.
+Analyze the following optimization problem:
+A pharmacy has 3000 mg of morphine to make painkillers and sleeping pills. Each painkiller pill requires 10 mg of morphine and 3 units of digestive medicine. Each sleeping pill requires 6 mg of morphine and 5 units of digestive medicine. The pharmacy needs to make at least 50 painkiller pills. Since sleeping pills are more popular, at least 70% of the pills should be sleeping pills. How many of each should the pharmacy make to minimize the total amount of digestive medicine needed?
+
+Task: Write a Python function that identifies which specific constraints or conditions in the given problem are not satisfied. This condition will need modification to achieve a valid and optimal solution.
+
+Function specifications:
+- Input arguments and their types: obj: 735.0, var1: 50, var2: 117
+- Adhere to the given data types.
+- Reference this code structure: import math
+
+def counterfactual_solution_analysis(obj, var1, var2):
+    """
+    Analyze what changes would be necessary for the given solution to be valid and optimal.
+    The function variable names must remain obj, var1 and var2. Do not alter these names.
+    Args:
+        obj: The objective value
+        var1: Value of variable 1
+        var2: Value of variable 2
+
+    Returns:
+        dict: Contains suggested modifications for each constraint and overall assessment
+    """
+    epsilon = 1e-2
+    modifications = {
+        "Modification1": {
+            "check": lambda: var1 >= 0-epsilon,
+            "message": "Adjust constraint to allow var1 to be {:.2f}".format(var1)
+        },
+        "Modification2": {
+            "check": lambda: var2 >= 0-epsilon,
+            "message": "Adjust constraint to allow var2 to be {:.2f}".format(var2)
+        },
+        "Modification3": {
+            "check": lambda: 2 * var1 + 3 * var2 <= 100+epsilon,
+            "message": "Modify resource constraint to allow 2*var1 + 3*var2 to be {:.2f}".format(2*var1 + 3*var2)
+        },
+        "Modification4": {
+            "check": lambda: var1 + var2 <= 35+epsilon,
+            "message": "Adjust daily production limit to allow var1 + var2 to be {:.2f}".format(var1 + var2)
+        },
+        "Modification5": {
+            "check": lambda: math.isclose(var1, round(var1)) and math.isclose(var2, round(var2)),
+            "message": "Remove integer constraint on variables"
+        },
+        "Modification6": {
+            "check": lambda: math.isclose(obj, round(obj)),
+            "message": "Remove integer constraint on objective"
+        }
+    }
+
+    results = {}
+    all_valid = True
+
+    for name, modification in modifications.items():
+        needed = not modification["check"]()
+        results[name] = {
+            "modification_needed": needed,
+            "suggestion": modification["message"] if needed else None
+        }
+        if needed:
+            all_valid = False
+
+    results["solution_valid_without_changes"] = all_valid
+
+    return results
+- Import the necessary libraries.
+
+Notes:
+The code example is only for reference in terms of format and structure. Generate code specifically for the given problem, not based on any examples.
+All specific constraints should be determined based on the problem description provided.
+Make sure to include checks for all constraints mentioned in the problem description. Don't give any Example usages.

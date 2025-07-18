@@ -1,0 +1,68 @@
+{
+    "description": "Consider a diet problem. Given a set of foods \\param{FoodSet} and a set of nutrients \\param{NutrientSet} which is the union of nutrients with minimum requirements \\param{MinReqNutrients} and nutrients with maximum requirements \\param{MaxReqNutrients}. Each food \\param{j} has a cost \\param{CostPerFood_j} and the amount of each nutrient \\param{i} it contains is \\param{AmountPerNutrient_{i,j}}. The problem aims to minimize the total cost of buying foods. It is constrained that the total amount of each nutrient \\param{i} with minimum requirements in the foods bought is at least \\param{MinReqAmount_i} and the total amount of each nutrient \\param{i} with maximum requirements in the foods bought is at most \\param{MaxReqAmount_i}. How to decide the amount of each food \\param{j} to buy ?",
+    "parameters": [
+        {
+            "symbol": "NutrientSet",
+            "definition": "The set of all nutrients",
+            "shape": []
+        },
+        {
+            "symbol": "FoodSet",
+            "definition": "The set of all foods",
+            "shape": []
+        },
+        {
+            "symbol": "MinReqNutrients",
+            "definition": "The set of nutrients with minimum requirements",
+            "shape": []
+        },
+        {
+            "symbol": "MaxReqNutrients",
+            "definition": "The set of nutrients with maximum requirements",
+            "shape": []
+        },
+        {
+            "symbol": "CostPerFood",
+            "definition": "The cost of each food item",
+            "shape": [
+                "FoodSet"
+            ]
+        },
+        {
+            "symbol": "FoodMin",
+            "definition": "The minimum quantity of each food that can be bought",
+            "shape": [
+                "FoodSet"
+            ]
+        },
+        {
+            "symbol": "FoodMax",
+            "definition": "The maximum quantity of each food that can be bought",
+            "shape": [
+                "FoodSet"
+            ]
+        },
+        {
+            "symbol": "MinReqAmount",
+            "definition": "The minimum required amount of each nutrient",
+            "shape": [
+                "NutrientSet"
+            ]
+        },
+        {
+            "symbol": "MaxReqAmount",
+            "definition": "The maximum allowed amount of each nutrient",
+            "shape": [
+                "NutrientSet"
+            ]
+        },
+        {
+            "symbol": "AmountPerNutrient",
+            "definition": "The amount of each nutrient contained in each food item",
+            "shape": [
+                "FoodSet",
+                "NutrientSet"
+            ]
+        }
+    ]
+}

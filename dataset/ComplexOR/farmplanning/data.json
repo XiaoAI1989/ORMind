@@ -1,0 +1,99 @@
+[
+    {
+        "input": {
+            "Crops": 2,
+            "Months": 3,
+            "ConsumptionBundles": 5,
+            "Yield": [
+                10,
+                15
+            ],
+            "Price": [
+                100,
+                150
+            ],
+            "AmountInBundle": [
+                [
+                    2,
+                    3,
+                    1,
+                    0,
+                    4
+                ],
+                [
+                    0,
+                    1,
+                    2,
+                    3,
+                    0
+                ]
+            ],
+            "LandAvailable": 100,
+            "BP_land": [
+                1,
+                0
+            ],
+            "FractionOccupiesLand": [
+                [
+                    0.5,
+                    0.3
+                ],
+                [
+                    0.2,
+                    0.4
+                ],
+                [
+                    0.1,
+                    0.2
+                ]
+            ],
+            "LaborRequired": [
+                [
+                    10,
+                    15
+                ],
+                [
+                    20,
+                    25
+                ],
+                [
+                    30,
+                    35
+                ]
+            ],
+            "AnnualWageRateFamilyLabor": 2000,
+            "AnnualWageRatePermanentLabor": 3000,
+            "HourlyWageRateTemporaryLabor": 20,
+            "WorkingHours": [
+                160,
+                160,
+                160
+            ],
+            "FamilyLaborAvailable": 2,
+            "AnnualAmountOfWaterAvailable": 500,
+            "WaterLimit": [
+                100,
+                200,
+                300
+            ],
+            "WaterRequirement": [
+                [
+                    10,
+                    15
+                ],
+                [
+                    20,
+                    25
+                ],
+                [
+                    30,
+                    35
+                ]
+            ],
+            "PriceOfWater": 50
+        },
+        "output": [
+            15000.000075000002
+        ]
+    }
+]

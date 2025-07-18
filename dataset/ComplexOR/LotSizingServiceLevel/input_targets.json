@@ -1,0 +1,50 @@
+{
+    "background": "The lot-sizing with service level (LS-SL) problem is the problem of determining order lot sizes and inventory levels to meet customer demands with service-level backlogged demand while maintaining low costs. The demand can be delivered by the end of the planning horizon at a predetermined service level but unit penalty is incurred for the amount backlogged.",
+    "constraints": [
+        "Flow balance in period `t` is satisfied",
+        "Upper bound of order amount in period `t`",
+        "Without loss of generality, the starting and ending stocks are zero",
+        "Without loss of generality for backlogging, the starting and ending backlogged amount are zero",
+        "Upper bound of backlogging amount in period `t`",
+        "Maximum number of backorders"
+    ],
+    "objective": "Minimize the total cost of all order lot size",
+    "description": "The lot-sizing with service level (LS-SL) problem is the problem of determining order lot sizes and inventory levels to meet customer demands with service-level backlogged demand while maintaining low costs. The demand can be delivered by the end of the planning horizon at a predetermined service level but unit penalty is incurred for the amount backlogged.",
+    "parameters": [
+        {
+            "symbol": "Periods",
+            "definition": "the number of periods",
+            "shape": []
+        },
+        {
+            "symbol": "Demand",
+            "definition": "Demand in period `t`",
+            "shape": ["Periods"]
+        },
+        {
+            "symbol": "CostFixed",
+            "definition": "Fixed ordering cost in period `t`",
+            "shape": ["Periods"]
+        },
+        {
+            "symbol": "CostUnitOrder",
+            "definition": "Unit ordering cost in period `t`",
+            "shape": ["Periods"]
+        },
+        {
+            "symbol": "CostUnitHold",
+            "definition": "Unit holding cost in period `t`",
+            "shape": ["Periods"]
+        },
+        {
+            "symbol": "Penalty",
+            "definition": "Unit backlogging penalty in period `t`",
+            "shape": ["Periods"]
+        },
+        {
+            "symbol": "ServiceLevel",
+            "definition": "Predetermined service level",
+            "shape": []
+        }
+    ]
+}

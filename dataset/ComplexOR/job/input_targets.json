@@ -1,0 +1,45 @@
+{
+    "background": "We have a set of tasks and a set of machines. Each task requires a sequence of operations on machines. We know the order of machines operation for each individual task. We also know the process time of each task on each machine. We want to find the sequence and start time of tasks on each machine to minimize the maximum processing time, i.e., minimize the latest completion time of all tasks.",
+    "constraints": [
+        "the latest finish time over machines",
+        "the completion time of the last task on each machine",
+        "logical constraint on the start times for a task",
+        "Avoid task overlap on each machine"
+    ],
+    "objective": "minimize the completion time of all tasks",
+    "description": "We have a set of tasks and a set of machines. Each task requires a sequence of operations on machines. We know the order of machines operation for each individual task. We also know the process time of each task on each machine. We want to find the sequence and start time of tasks on each machine to minimize the maximum processing time, i.e., minimize the latest completion time of all tasks.",
+    "parameters": [
+        {
+            "symbol": "Tasks",
+            "definition": "The number of all tasks/jobs",
+            "shape": []
+        },
+        {
+            "symbol": "Machines",
+            "definition": "The number of all machines",
+            "shape": []
+        },
+        {
+            "symbol": "ProcessingTime",
+            "definition": "Processing time of task `j` on machine `m`",
+            "shape": [
+                "Tasks",
+                "Machines"
+            ]
+        },
+        {
+            "symbol": "Delta",
+            "definition": "Binary parameter, 1 if task `i` should go directly from machine `m` to machine `n`",
+            "shape": [
+                "Tasks",
+                "Machines",
+                "Machines"
+            ]
+        },
+        {
+            "symbol": "BigM",
+            "definition": "A big number",
+            "shape": []
+        }
+    ]
+}

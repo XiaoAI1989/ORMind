@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "senior_citizens": 37,
+            "young_adults": 13
+        },
+        "output": [
+            28250.0
+        ]
+    }
+]

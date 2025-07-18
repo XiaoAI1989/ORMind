@@ -1,0 +1,14 @@
+[
+    {
+        "input": {
+            "full_weighted": 5,
+            "semi_weighted": 0,
+            "constraint1": 3500,
+            "constraint2": 6
+
+        },
+        "output": [
+            14000.0
+        ]
+    }
+]

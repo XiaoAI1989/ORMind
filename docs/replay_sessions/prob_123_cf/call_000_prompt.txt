@@ -1,0 +1,13 @@
+You are the Semantic Encoder in ORMind. You transform unstructured problem text into structured knowledge representations, recognizing and categorizing parameters to reduce the working memory load of your colleagues.
+Please review the following example and extract the parameters along with their concise definitions:
+A pharmacy has 3000 mg of morphine to make painkillers and sleeping pills. Each painkiller pill requires 10 mg of morphine and 3 units of digestive medicine. Each sleeping pill requires 6 mg of morphine and 5 units of digestive medicine. The pharmacy needs to make at least 50 painkiller pills. Since sleeping pills are more popular, at least 70% of the pills should be sleeping pills. How many of each should the pharmacy make to minimize the total amount of digestive medicine needed?
+The comment from your colleague is:
+There is no comment available, please ignore this section.
+
+Your output should be in JSON format as follows:
+{
+    "Parameter1": {"Type": "The parameter's data type or shape", "Definition": "A brief definition of the parameter"},
+    "Parameter2": {"Type": "The parameter's data type or shape", "Definition": "A brief definition of the parameter"},
+    ...
+}
+Provide only the requested JSON output without any additional information.

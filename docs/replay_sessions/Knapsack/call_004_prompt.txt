@@ -1,0 +1,74 @@
+You are the System 2 Reasoner in ORMind. You provide deliberate verification through counterfactual reasoning and syntax error analysis.
+Analyze the following optimization problem:
+background: The Knapsack Problem involves selecting the most valuable combination of items to fit in a knapsack without exceeding its weight limit.
+objective: Maximize the total value of the items in the knapsack
+constraints: 1. The total weight of the selected items must not exceed MaxKnapsackWeight
+2. Only non-negative quantities of each item can be selected
+3. No more than TotalItems items can be considered for selection
+problem_description: The Knapsack Problem is a classic optimization problem in operations research and computer science. The problem is to determine the most valuable combination of items to include in a knapsack, given a set of \param{TotalItems} with different values and weights represented by \param{ItemValues} and \param{ItemWeights} respectively, and a maximum weight capacity of the knapsack \param{MaxKnapsackWeight}. The goal is to maximize the total value of the items in the knapsack, represented by \param{ItemValues}, without exceeding its weight capacity \param{MaxKnapsackWeight}.
+parameters: Parameters:
+- TotalItems: The total number of available items
+- ItemValues: The value of each item
+  Shape: TotalItems
+- ItemWeights: The weight of each item
+  Shape: TotalItems
+- MaxKnapsackWeight: The maximum weight capacity of the knapsack
+
+Task: Write a Python function that identifies which specific constraints or conditions in the given problem are not satisfied. This condition will need modification to achieve a valid and optimal solution.
+
+Function specifications:
+- Input arguments and their types: x: dict, data: dict
+- Adhere to the given data types.
+- Reference this code structure: import numpy as np
+
+def counterfactual_solution_analysis(alloys_used, data):
+    """
+    Analyze what changes would be necessary for the given solution to be valid and optimal.
+
+    Returns:
+        dict: Contains suggested modifications for each constraint and overall assessment
+    """
+    AlloysOnMarket = data["AlloysOnMarket"]
+    RequiredElements = data["RequiredElements"]
+    CompositionDataPercentage = np.array(data["CompositionDataPercentage"])
+    DesiredBlendPercentage = np.array(data["DesiredBlendPercentage"])
+    AlloyPrice = np.array(data["AlloyPrice"])
+
+    alloys_used_array = np.array([alloys_used[a] for a in range(AlloysOnMarket)])
+
+    modifications = {
+        "Modification1": {
+            "check": lambda: all(alloys_used_array >= 0),
+            "message": "Adjust non-negativity constraint to allow negative quantities: {}".format(alloys_used_array)
+        },
+        "Modification2": {
+            "check": lambda: all(np.dot(CompositionDataPercentage, alloys_used_array) >= DesiredBlendPercentage * np.sum(alloys_used_array)),
+            "message": "Modify desired blend percentages to: {}".format(np.dot(CompositionDataPercentage, alloys_used_array) / np.sum(alloys_used_array))
+        },
+        "Modification3": {
+            "check": lambda: all(alloys_used_array <= 1),
+            "message": "Increase market availability to allow quantities: {}".format(alloys_used_array)
+        }
+    }
+
+    results = {}
+    all_valid = True
+
+    for name, modification in modifications.items():
+        needed = not modification["check"]()
+        results[name] = {
+            "modification_needed": needed,
+            "suggestion": modification["message"] if needed else None
+        }
+        if needed:
+            all_valid = False
+
+    results["solution_valid_without_changes"] = all_valid
+
+    return results
+- Import the necessary libraries.
+
+Notes:
+The code example is only for reference in terms of format and structure. Generate code specifically for the given problem, not based on any examples.
+All specific constraints should be determined based on the problem description provided.
+Make sure to include checks for all constraints mentioned in the problem description. Don't give any Example usages.

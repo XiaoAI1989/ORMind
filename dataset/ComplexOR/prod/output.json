@@ -1,0 +1,180 @@
+[
+    "The problem is solved.",
+    {
+        "background": "The problem involves optimizing the total profit based on production or usage decisions for a set of elements, each with associated profits, coefficients affecting the production or usage cost, and upper bounds on their levels.",
+        "problem_type": "LP",
+        "parameters": [
+            {
+                "symbol": "ElementNum",
+                "definition": "The set of elements",
+                "shape": [],
+                "code": "ElementNum = data[\"ElementNum\"] # scalar parameter"
+            },
+            {
+                "symbol": "CoefficientA",
+                "definition": "A coefficient parameter for each element in the set",
+                "shape": [
+                    "ElementNum"
+                ],
+                "code": "CoefficientA = np.array(data[\"CoefficientA\"]) # ['ElementNum']"
+            },
+            {
+                "symbol": "ProfitCoefficientC",
+                "definition": "Profit coefficient for each element in the set",
+                "shape": [
+                    "ElementNum"
+                ],
+                "code": "ProfitCoefficientC = np.array(data[\"ProfitCoefficientC\"]) # ['ElementNum']"
+            },
+            {
+                "symbol": "UpperBoundU",
+                "definition": "Upper bound on the decision variable for each element in the set",
+                "shape": [
+                    "ElementNum"
+                ],
+                "code": "UpperBoundU = np.array(data[\"UpperBoundU\"]) # ['ElementNum']"
+            },
+            {
+                "symbol": "GlobalParameterB",
+                "definition": "A global parameter representing an upper limit on the weighted sum of decision variables",
+                "shape": [],
+                "code": "GlobalParameterB = data[\"GlobalParameterB\"] # scalar parameter"
+            }
+        ],
+        "constraint": [
+            {
+                "description": "The sum of the inverses of CoefficientA_j multiplied by DecisionVariableX_j for all elements in ElementNum must be less than or equal to GlobalParameterB",
+                "status": "coded",
+                "formulation": "\\sum_{j \\in \\textup{ElementNum}} \\textup{InverseCoefficient}_j \\cdot \\textup{DecisionVariableX}_j \\leq \\textup{GlobalParameterB}",
+                "related_variables": [
+                    "InverseCoefficient",
+                    "DecisionVariableX"
+                ],
+                "related_parameters": [
+                    "ElementNum",
+                    "GlobalParameterB"
+                ],
+                "code": "# Add constraint for the sum of inverses of CoefficientA_j multiplied by DecisionVariableX_j\nmodel.addConstr(gp.quicksum(InverseCoefficient[j] * DecisionVariableX[j] for j in range(ElementNum)) <= GlobalParameterB, name=\"inverse_coefficient_sum_constraint\")"
+            },
+            {
+                "description": "Each DecisionVariableX_j is greater than or equal to 0",
+                "status": "coded",
+                "formulation": "\\textup{DecisionVariableX}_j \\geq 0 \\quad \\forall j \\in \\textup{ElementNum}",
+                "related_variables": [
+                    "DecisionVariableX"
+                ],
+                "related_parameters": [
+                    "ElementNum"
+                ],
+                "code": "# No additional code is needed as the constraint DecisionVariableX_j >= 0 is already \n# enforced by default when creating the variables with vtype=gp.GRB.CONTINUOUS"
+            },
+            {
+                "description": "Each DecisionVariableX_j is less than or equal to its respective UpperBoundU_j",
+                "status": "coded",
+                "formulation": "\\textup{DecisionVariableX}_j \\leq \\textup{UpperBoundU}_j \\quad \\forall j \\in \\textup{ElementNum}",
+                "related_variables": [
+                    "DecisionVariableX"
+                ],
+                "related_parameters": [
+                    "UpperBoundU",
+                    "ElementNum"
+                ],
+                "code": "# Add upper bound constraints for DecisionVariableX\nfor j in range(ElementNum):\n    model.addConstr(DecisionVariableX[j] <= UpperBoundU[j], name=f\"upper_bound_{j}\")"
+            },
+            {
+                "description": "Upper bound constraint for each decision variable",
+                "formulation": "\\textup{DecisionVariableX}_j \\leq \\textup{UpperBoundU}_j \\ \\forall j \\in \\textup{ElementNum}",
+                "status": "coded",
+                "related_variables": [
+                    "DecisionVariableX"
+                ],
+                "related_parameters": [
+                    "UpperBoundU",
+                    "ElementNum"
+                ],
+                "code": "# Add upper bound constraints for each decision variable\nfor j in range(ElementNum):\n    model.addConstr(DecisionVariableX[j] <= UpperBoundU[j], name=f\"upper_bound_{j}\")"
+            },
+            {
+                "description": "Upper bound constraint on each decision variable",
+                "formulation": "\\textup{DecisionVariableX}_{j} \\leq \\textup{UpperBoundU}_{j} \\ \\forall j \\in \\textup{ElementNum}",
+                "status": "coded",
+                "related_variables": [
+                    "DecisionVariableX"
+                ],
+                "related_parameters": [
+                    "UpperBoundU",
+                    "ElementNum"
+                ],
+                "code": "# Add upper bound constraints for each decision variable\nfor j in range(ElementNum):\n    model.addConstr(DecisionVariableX[j] <= UpperBoundU[j], name=f\"upper_bound_{j}\")"
+            },
+            {
+                "description": "Global constraint on the weighted sum of decision variables",
+                "formulation": "\\sum_{j \\in \\textup{ElementNum}} \\textup{CoefficientA}_{j} \\cdot \\textup{DecisionVariableX}_{j} \\leq \\textup{GlobalParameterB}",
+                "status": "coded",
+                "related_variables": [
+                    "DecisionVariableX"
+                ],
+                "related_parameters": [
+                    "ElementNum",
+                    "CoefficientA",
+                    "GlobalParameterB"
+                ],
+                "code": "# Add global constraint on the weighted sum of decision variables\nmodel.addConstr(gp.quicksum(CoefficientA[j] * DecisionVariableX[j] for j in range(ElementNum)) <= GlobalParameterB, name=\"global_weighted_sum_constraint\")"
+            },
+            {
+                "description": "Non-negativity constraint on decision variables",
+                "formulation": "\\textup{DecisionVariableX}_{j} \\geq 0 \\ \\forall j \\in \\textup{ElementNum}",
+                "status": "coded",
+                "related_variables": [
+                    "DecisionVariableX"
+                ],
+                "related_parameters": [
+                    "ElementNum"
+                ],
+                "code": "# No additional code is needed for non-negativity constraint\n# The non-negativity constraint is already enforced by default when creating continuous variables in Gurobi\n# The variable DecisionVariableX is defined as continuous, so it's automatically non-negative"
+            }
+        ],
+        "variables": [
+            {
+                "definition": "The decision variable for each element in the set",
+                "symbol": "DecisionVariableX",
+                "shape": [
+                    "ElementNum"
+                ],
+                "status": "coded",
+                "code": "DecisionVariableX = model.addVars(ElementNum, vtype=gp.GRB.CONTINUOUS, name=\"DecisionVariableX\")"
+            },
+            {
+                "definition": "The inverse of the coefficient parameter for each element in the set",
+                "symbol": "InverseCoefficient",
+                "shape": [
+                    "ElementNum"
+                ],
+                "status": "coded",
+                "code": "InverseCoefficient = model.addVars(ElementNum, vtype=gp.GRB.CONTINUOUS, name=\"InverseCoefficient\")"
+            }
+        ],
+        "objective": [
+            {
+                "description": "Maximize the total profit, which is the sum of the product of ProfitCoefficientC_j and DecisionVariableX_j for all elements in ElementNum",
+                "status": "coded",
+                "formulation": "\\max \\sum_{j \\in \\textup{ElementNum}} \\textup{ProfitCoefficientC}_{j} \\cdot \\textup{DecisionVariableX}_{j}",
+                "related_variables": [
+                    "DecisionVariableX"
+                ],
+                "related_parameters": [
+                    "ElementNum",
+                    "ProfitCoefficientC"
+                ],
+                "code": "# Set objective\nmodel.setObjective(gp.quicksum(ProfitCoefficientC[j] * DecisionVariableX[j] for j in range(ElementNum)), gp.GRB.MAXIMIZE)"
+            }
+        ],
+        "solution_status": "solved",
+        "solver_output_status": 2,
+        "error_message": null,
+        "obj_val": 8.571428571428571,
+        "log_folder": "logs/log_20240723101958_complexor_prod/",
+        "data_json_path": "data/complexor/prod/data.json",
+        "code": "\nimport json\nimport numpy as np\nimport math\n\nimport gurobipy as gp\n\n # Define model\nmodel = gp.Model('model')\n\nwith open(\"data/complexor/prod/data.json\", \"r\") as f:\n    data = json.load(f)\n\n\nElementNum = data[\"ElementNum\"] # scalar parameter\nCoefficientA = np.array(data[\"CoefficientA\"]) # ['ElementNum']\nProfitCoefficientC = np.array(data[\"ProfitCoefficientC\"]) # ['ElementNum']\nUpperBoundU = np.array(data[\"UpperBoundU\"]) # ['ElementNum']\nGlobalParameterB = data[\"GlobalParameterB\"] # scalar parameter\nDecisionVariableX = model.addVars(ElementNum, vtype=gp.GRB.CONTINUOUS, name=\"DecisionVariableX\")\nInverseCoefficient = model.addVars(ElementNum, vtype=gp.GRB.CONTINUOUS, name=\"InverseCoefficient\")\n\n# Add constraint for the sum of inverses of CoefficientA_j multiplied by DecisionVariableX_j\nmodel.addConstr(gp.quicksum(InverseCoefficient[j] * DecisionVariableX[j] for j in range(ElementNum)) <= GlobalParameterB, name=\"inverse_coefficient_sum_constraint\")\n\n# No additional code is needed as the constraint DecisionVariableX_j >= 0 is already \n# enforced by default when creating the variables with vtype=gp.GRB.CONTINUOUS\n\n# Add upper bound constraints for DecisionVariableX\nfor j in range(ElementNum):\n    model.addConstr(DecisionVariableX[j] <= UpperBoundU[j], name=f\"upper_bound_{j}\")\n\n# Add upper bound constraints for each decision variable\nfor j in range(ElementNum):\n    model.addConstr(DecisionVariableX[j] <= UpperBoundU[j], name=f\"upper_bound_{j}\")\n\n# Add upper bound constraints for each decision variable\nfor j in range(ElementNum):\n    model.addConstr(DecisionVariableX[j] <= UpperBoundU[j], name=f\"upper_bound_{j}\")\n\n# Add global constraint on the weighted sum of decision variables\nmodel.addConstr(gp.quicksum(CoefficientA[j] * DecisionVariableX[j] for j in range(ElementNum)) <= GlobalParameterB, name=\"global_weighted_sum_constraint\")\n\n# No additional code is needed for non-negativity constraint\n# The non-negativity constraint is already enforced by default when creating continuous variables in Gurobi\n# The variable DecisionVariableX is defined as continuous, so it's automatically non-negative\n\n# Set objective\nmodel.setObjective(gp.quicksum(ProfitCoefficientC[j] * DecisionVariableX[j] for j in range(ElementNum)), gp.GRB.MAXIMIZE)\n\n# Optimize model\nmodel.optimize()\n\n\n# Get model status\nstatus = model.status\n\nobj_val = None\n# check whether the model is infeasible, has infinite solutions, or has an optimal solution\nif status == gp.GRB.INFEASIBLE:\n    obj_val = \"infeasible\"\nelif status == gp.GRB.INF_OR_UNBD:\n    obj_val = \"infeasible or unbounded\"\nelif status == gp.GRB.UNBOUNDED:\n    obj_val = \"unbounded\"\nelif status == gp.GRB.OPTIMAL:\n    obj_val = model.objVal\n\n"
+    }
+]

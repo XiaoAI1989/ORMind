@@ -1,0 +1,10 @@
+{
+    "fish_per_trip_sled_dogs": {"Type": "Scalar (positive number)", "Definition": "Amount of fish that can be transported per trip using sled dogs"},
+    "fish_per_trip_trucks": {"Type": "Scalar (positive number)", "Definition": "Amount of fish that can be transported per trip using trucks"},
+    "cost_per_trip_sled_dogs": {"Type": "Scalar (positive number)", "Definition": "Cost incurred for one sled dog trip"},
+    "cost_per_trip_trucks": {"Type": "Scalar (positive number)", "Definition": "Cost incurred for one truck trip"},
+    "budget_limit": {"Type": "Scalar (positive number)", "Definition": "Upper limit on total transportation budget"},
+    "num_sled_dog_trips": {"Type": "Integer variable", "Definition": "Number of sled dog trips to be planned"},
+    "num_truck_trips": {"Type": "Integer variable", "Definition": "Number of truck trips to be planned"},
+    "total_fish_transported": {"Type": "Scalar (non-negative number)", "Definition": "Total amount of fish transported, to be maximized"}
+}

@@ -1,0 +1,40 @@
+{
+    "description": "This is a cutting stock problem. Given a roll of width \\param{RollWidth} and a set of widths \\param{Widths} to be cut. Each width i has a certain number of orders \\param{Orders_i}. There are \\param{NumPatterns} patterns and each pattern j has a certain number of rolls of each width i \\param{NumRollsWidthPattern_{i,j}}. The problem aims to minimize the total number of raw rolls cut. It is constrained that for each width i, the total number of rolls cut meets the total orders. The decision to be made concerns how to decide the number of rolls cut using each pattern j.",
+    "parameters": [
+        {
+            "symbol": "Widths",
+            "definition": "The set of widths to be cut from the roll",
+            "shape": []
+        },
+        {
+            "symbol": "Patterns",
+            "definition": "The set of cutting patterns",
+            "shape": []
+        },
+        {
+            "symbol": "RollWidth",
+            "definition": "The width of the raw roll",
+            "shape": []
+        },
+        {
+            "symbol": "Orders",
+            "definition": "The number of orders for each width",
+            "shape": [
+                "Widths"
+            ]
+        },
+        {
+            "symbol": "NumPatterns",
+            "definition": "The total number of patterns",
+            "shape": []
+        },
+        {
+            "symbol": "NumRollsWidthPattern",
+            "definition": "The number of rolls of each width i in each pattern j",
+            "shape": [
+                "Widths",
+                "Patterns"
+            ]
+        }
+    ]
+}

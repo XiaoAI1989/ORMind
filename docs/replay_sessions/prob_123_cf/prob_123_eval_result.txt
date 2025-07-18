@@ -1,0 +1,1 @@
+Modify sleeping pill percentage constraint to allow var2/(var1+var2) to be 0.00

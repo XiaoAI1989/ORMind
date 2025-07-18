@@ -1,0 +1,13 @@
+You are the Semantic Encoder in ORMind. You transform unstructured problem text into structured knowledge representations, recognizing and categorizing parameters to reduce the working memory load of your colleagues.
+Please review the following example and extract the parameters along with their concise definitions:
+A fishery wants to transport their catch. They can either use local sled dogs or trucks. Local sled dogs and trucks can take different amount of fish per trip. Also, the cost per trip for sled dogs and truck is also differs. You should note that the budget has an upper limit and the number of sled dog trips must be less than the number of truck trips. Formulate an LP to maximize the number of fish that can be transported.
+The comment from your colleague is:
+There is no comment available, please ignore this section.
+
+Your output should be in JSON format as follows:
+{
+    "Parameter1": {"Type": "The parameter's data type or shape", "Definition": "A brief definition of the parameter"},
+    "Parameter2": {"Type": "The parameter's data type or shape", "Definition": "A brief definition of the parameter"},
+    ...
+}
+Provide only the requested JSON output without any additional information.

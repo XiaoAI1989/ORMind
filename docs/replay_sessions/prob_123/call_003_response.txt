@@ -1,0 +1,36 @@
+```python
+from pulp import LpProblem, LpVariable, LpMinimize, value
+
+def prob_123(painkillers, sleeping_pills):
+    """
+    Args:
+        painkillers: an integer, representing the number of painkiller pills
+        sleeping_pills: an integer, representing the number of sleeping pills
+    Returns:
+        amount_of_digestive_medicine: an integer, representing the total amount of digestive medicine needed
+    """
+    morphine_available = 3000
+    morphine_per_painkiller = 10
+    digestive_medicine_per_painkiller = 3
+    morphine_per_sleeping_pill = 6
+    digestive_medicine_per_sleeping_pill = 5
+    min_painkiller_pills = 50
+    sleeping_pill_ratio = 0.7
+
+    problem = LpProblem("Pharmacy_Pill_Optimization", LpMinimize)
+    painkiller_count = LpVariable("painkiller_pills", lowBound=0, cat="Integer")
+    sleeping_pill_count = LpVariable("sleeping_pills", lowBound=0, cat="Integer")
+
+    problem += digestive_medicine_per_painkiller * painkiller_count + digestive_medicine_per_sleeping_pill * sleeping_pill_count, "Total_Digestive_Medicine"
+    problem += morphine_per_painkiller * painkiller_count + morphine_per_sleeping_pill * sleeping_pill_count <= morphine_available, "Morphine_Constraint"
+    problem += painkiller_count >= min_painkiller_pills, "Min_Painkiller_Constraint"
+    problem += 3 * sleeping_pill_count >= 7 * painkiller_count, "Sleeping_Pill_Ratio_Constraint"
+
+    problem.solve()
+
+    obj = value(problem.objective)
+    var1 = int(value(painkiller_count))
+    var2 = int(value(sleeping_pill_count))
+
+    return obj, var1, var2
+```

@@ -1,0 +1,52 @@
+{
+    "background": "The problem involves selecting a combination of foods from a set that meets certain nutritional requirements while minimizing the total cost. The nutrients have individual minimum and maximum required amounts to be satisfied in the diet.",
+    "constraints": [
+        "For each nutrient with a minimum requirement, the total amount in the diet must be at least MinReqAmount_i",
+        "For each nutrient with a maximum requirement, the total amount in the diet must be at most MaxReqAmount_i",
+        "Amount of each food j to be bought is non-negative"
+    ],
+    "objective": "Minimize the total cost of buying foods to meet the nutritional requirements",
+    "description": "Consider a diet problem. Given a set of \\param{FoodNum} foods and a set of \\param{NutrientNum}. Each food \\param{j} has a cost \\param{CostPerFood_j} and the amount of each nutrient \\param{i} it contains is \\param{AmountPerNutrient_{i,j}}. The problem aims to minimize the total cost of buying foods. It is constrained that the total amount of each nutrient \\param{i} with minimum requirements in the foods bought is at least \\param{MinReqAmount_i} and the total amount of each nutrient \\param{i} with maximum requirements in the foods bought is at most \\param{MaxReqAmount_i}. How to decide the amount of each food \\param{j} to buy ?",
+    "parameters": [
+        {
+            "symbol": "FoodNum",
+            "definition": "The number of foods",
+            "shape": []
+        },
+        {
+            "symbol": "NutrientNum",
+            "definition": "The number of nutrients",
+            "shape": []
+        },
+        {
+            "symbol": "CostPerFood",
+            "definition": "The cost of each food item",
+            "shape": ["FoodNum"]
+        },
+        {
+            "symbol": "FoodMin",
+            "definition": "The minimum quantity of each food that can be bought",
+            "shape": ["FoodNum"]
+        },
+        {
+            "symbol": "FoodMax",
+            "definition": "The maximum quantity of each food that can be bought",
+            "shape": ["FoodNum"]
+        },
+        {
+            "symbol": "MinReqAmount",
+            "definition": "The minimum required amount of each nutrient",
+            "shape": ["NutrientNum"]
+        },
+        {
+            "symbol": "MaxReqAmount",
+            "definition": "The maximum allowed amount of each nutrient",
+            "shape": ["NutrientNum"]
+        },
+        {
+            "symbol": "AmountPerNutrient",
+            "definition": "The amount of each nutrient contained in each food item",
+            "shape": ["FoodNum", "NutrientNum"]
+        }
+    ]
+}

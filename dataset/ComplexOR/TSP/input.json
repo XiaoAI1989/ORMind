@@ -1,0 +1,36 @@
+{
+    "description": "The optimization problem is focused on efficiently allocating goods from a set of origins, denoted by \\param{OriginNum}, to a set of destinations, represented by \\param{DestinationNum}. Each originating point has a certain supply of goods, \\param{Supply_i}, where i is an origin. Correspondingly, each destination point has a specific demand, \\param{Demand_j}, where j is a destination. The cost associated with sending goods from origin i to destination j is represented by \\param{Cost_{i,j}}. The objective is to minimize the total transportation cost while meeting the demands at the destinations without exceeding the supplies at the origins.",
+    "parameters": [
+        {
+            "symbol": "OriginNum",
+            "definition": "The total number of origins",
+            "shape": []
+        },
+        {
+            "symbol": "DestinationNum",
+            "definition": "The total number of destinations",
+            "shape": []
+        },
+        {
+            "symbol": "Supply",
+            "definition": "The supply of goods available at each origin",
+            "shape": [
+                "{i \\in OriginNum}"
+            ]
+        },
+        {
+            "symbol": "Demand",
+            "definition": "The demand for goods to be satisfied at each destination",
+            "shape": [
+                "{j \\in DestinationNum}"
+            ]
+        },
+        {
+            "symbol": "Cost",
+            "definition": "The cost of transporting goods from origin i to destination j",
+            "shape": [
+                "{i \\in OriginNum, j \\in DestinationNum}"
+            ]
+        }
+    ]
+}

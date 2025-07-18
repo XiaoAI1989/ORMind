@@ -1,0 +1,51 @@
+{
+    "background": "The contract allocation problem is the problem of determining which of the producers will take care of which contract, at minimum cost, where every contract represents an amount of commodity that has to be supplied.",
+    "constraints": [
+        "Production capacity for producer `p`",
+        "The demand for contract `c` is met",
+        "Minimal number of contributors to contract `c`",
+        "Determine if producer `p` delivers to contract `c`"
+    ],
+    "objective": "Minimize the total cost of all deliveries",
+    "description": "The contract allocation problem is the problem of determining which of the producers will take care of which contract, at minimum cost, where every contract represents an amount of commodity that has to be supplied.",
+    "parameters": [
+        {
+            "symbol": "Producers",
+            "definition": "The number of all producers",
+            "shape": []
+        },
+        {
+            "symbol": "Contracts",
+            "definition": "The number of all contracts",
+            "shape": []
+        },
+        {
+            "symbol": "AvailableCapacity",
+            "definition": "Available capacity for producer `p`",
+            "shape": ["Producers"]
+        },
+        {
+            "symbol": "ProductionCost",
+            "definition": "Unit cost for delivery by producer `p` for contract `c`",
+            "shape": [
+                "Producers",
+                "Contracts"
+            ]
+        },
+        {
+            "symbol": "MinimalDelivery",
+            "definition": "Minimal delivery size for producer `p`",
+            "shape": ["Producers"]
+        },
+        {
+            "symbol": "ContractSize",
+            "definition": "Size of contract `c`",
+            "shape": ["Contracts"]
+        },
+        {
+            "symbol": "MinimalNumberofContributors",
+            "definition": "Minimal number of producers that delivery to contract `c`",
+            "shape": ["Contracts"]
+        }
+    ]
+}

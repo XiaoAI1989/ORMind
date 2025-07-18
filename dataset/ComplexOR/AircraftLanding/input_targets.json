@@ -1,0 +1,59 @@
+{
+    "background": "The Aircraft Landing Problem involves scheduling aircraft to land on runways within specified time windows while adhering to separation time criteria between consecutive landings to ensure safety.",
+    "constraints": [
+        "Each aircraft must land within its predetermined time window",
+        "Sufficient separation time must be maintained between consecutive aircraft landings as specified in the SeparationTimeMatrix"
+    ],
+    "objective": "Minimize the sum of penalties incurred for each aircraft landing before or after its TargetLandingTime",
+    "description": "The Aircraft Landing Problem (ALP) is the problem of deciding a landing time on an appropriate runway for each aircraft in a given set of \\param{TotalAircrafts} aircraft such that each aircraft lands within a predetermined time window defined by an \\param{EarliestLandingTime} and a \\param{LatestLandingTime}; and separation criteria between the landing of an aircraft i, and the landing of all successive aircraft j, are respected, determined by \\param{SeparationTimeMatrix}. Each aircraft has a \\param{TargetLandingTime}, and penalties are incurred for landing after (\\param{PenaltyTimeAfterTarget}) or before (\\param{PenaltyTimeBeforeTarget}) this target time.",
+    "parameters": [
+        {
+            "symbol": "TotalAircrafts",
+            "definition": "The total number of aircraft in the set",
+            "shape": []
+        },
+        {
+            "symbol": "EarliestLandingTime",
+            "definition": "The earliest landing time for each aircraft",
+            "shape": [
+                "TotalAircrafts"
+            ]
+        },
+        {
+            "symbol": "LatestLandingTime",
+            "definition": "The latest landing time for each aircraft",
+            "shape": [
+                "TotalAircrafts"
+            ]
+        },
+        {
+            "symbol": "TargetLandingTime",
+            "definition": "The target landing time for each aircraft",
+            "shape": [
+                "TotalAircrafts"
+            ]
+        },
+        {
+            "symbol": "PenaltyTimeAfterTarget",
+            "definition": "The penalty incurred for each aircraft landing after the target time",
+            "shape": [
+                "TotalAircrafts"
+            ]
+        },
+        {
+            "symbol": "PenaltyTimeBeforeTarget",
+            "definition": "The penalty incurred for each aircraft landing before the target time",
+            "shape": [
+                "TotalAircrafts"
+            ]
+        },
+        {
+            "symbol": "SeparationTimeMatrix",
+            "definition": "The required separation time between the landing of aircraft i and aircraft j",
+            "shape": [
+                "TotalAircrafts",
+                "TotalAircrafts"
+            ]
+        }
+    ]
+}

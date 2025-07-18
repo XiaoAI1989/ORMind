@@ -1,0 +1,5 @@
+openai>=1.30.0
+# Paper environment (Appendix E) used NumPy 1.23.5 and PuLP 2.8.0; the floor
+# below admits the exact paper version while allowing newer releases.
+numpy>=1.23.5
+pulp==2.8.0

@@ -1,0 +1,44 @@
+{
+    "background": "We have a set of flight legs (one-way non-stop flight) with a limited passenger capacity. According to market research, we defined a set of flight itineraries to sell as a package with a given price. For each package, we have an estimated demand. How many units of each package should we sell to maximize the revenue? We reserve the passenger seats according to the number of packages we want to sell.",
+    "constraints": [
+        "Cannot sell more than the demand",
+        "Cannot use more of a resource than available"
+    ],
+    "objective": "Maximize the revenue",
+    "description": "We have a set of flight legs (one-way non-stop flight) with a limited passenger capacity. According to market research, we defined a set of flight itineraries to sell as a package with a given price. For each package, we have an estimated demand. How many units of each package should we sell to maximize the revenue? We reserve the passenger seats according to the number of packages we want to sell.",
+    "parameters": [
+        {
+            "symbol": "FlightLegs",
+            "definition": "The number of flight legs (one-way non-stop flight)",
+            "shape": []
+        },
+        {
+            "symbol": "Packages",
+            "definition": "The number of packages",
+            "shape": []
+        },
+        {
+            "symbol": "AvailableSeats",
+            "definition": "Number of available seats for flight `r`",
+            "shape": ["FlightLegs"]
+        },
+        {
+            "symbol": "Demand",
+            "definition": "Estimated demand of package `p`",
+            "shape": ["Packages"]
+        },
+        {
+            "symbol": "Revenue",
+            "definition": "Revenue gained for selling a unit of package `p`",
+            "shape": ["Packages"]
+        },
+        {
+            "symbol": "Delta",
+            "definition": "Binary parameter, 1 if package `p` uses resource `r`",
+            "shape": [
+                "Packages",
+                "FlightLegs"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "background": "In this problem, power generation units are grouped into three distinct types, with different characteristics for each type (power output, cost per megawatt hour, startup cost, etc.). A unit can be on or off, with a startup cost associated with transitioning from off to on, and power output that can fall anywhere between a specified minimum and maximum value when the unit is on. A 5-hour time horizon is with an expected total power demand for each hour. The model decides which units to turn on, and when, in order to satisfy demand for each time period. The model also captures a reserve requirement, where the selected power plants must be capable of increasing their output, while still respecting their maximum output, in order to cope with the situation where actual demand exceeds predicted demand.",
+    "constraints": [
+        "Number of generators used must be less than or equal to the number available",
+        "Total power generated across all generator types must meet anticipated demand for each time period `p`",
+        "Power generation must respect generator minimum values",
+        "Power generation must respect generator maximum values",
+        "Selected generators must be able to satisfy demand that is as much as 15% above the prediction",
+        "Establish relationship between number of active generators and number of startups",
+        "Establish relationship between number of active generators and number of startups"
+    ],
+    "objective": "the cost to satisfy the predicted electricity demand",
+    "description": "In this problem, power generation units are grouped into three distinct types, with different characteristics for each type (power output, cost per megawatt hour, startup cost, etc.). A unit can be on or off, with a startup cost associated with transitioning from off to on, and power output that can fall anywhere between a specified minimum and maximum value when the unit is on. A 5-hour time horizon is with an expected total power demand for each hour. The model decides which units to turn on, and when, in order to satisfy demand for each time period. The model also captures a reserve requirement, where the selected power plants must be capable of increasing their output, while still respecting their maximum output, in order to cope with the situation where actual demand exceeds predicted demand.",
+    "parameters": [
+        {
+            "symbol": "GeneratorTypes",
+            "definition": "The number of generator types",
+            "shape": []
+        },
+        {
+            "symbol": "TimePeriods",
+            "definition": "The number of time periods",
+            "shape": []
+        },
+        {
+            "symbol": "OnStart",
+            "definition": "The number of generators that are on at the beginning of the time horizon",
+            "shape": []
+        },
+        {
+            "symbol": "Generators",
+            "definition": "Number of generators of type `t`",
+            "shape": ["GeneratorTypes"]
+        },
+        {
+            "symbol": "Demand",
+            "definition": "Total power demand for time period `p`",
+            "shape": ["TimePeriods"]
+        },
+
+        {
+            "symbol": "MinOutput",
+            "definition": "Minimum output for generator type `t`",
+            "shape": ["GeneratorTypes"]
+        },
+        {
+            "symbol": "MaxOutput",
+            "definition": "Maximum output for generator type `t`",
+            "shape": ["GeneratorTypes"]
+        },
+        {
+            "symbol": "BaseCost",
+            "definition": "Minimum operating cost (per hour) for a generator of type `t`",
+            "shape": ["GeneratorTypes"]
+        },
+        {
+            "symbol": "PerMWCost",
+            "definition": "Cost to generate one MW (per hour) for a generator of type `t`",
+            "shape": ["GeneratorTypes"]
+        },
+        {
+            "symbol": "StartupCost",
+            "definition": "Startup cost for generator of type `t`",
+            "shape": ["GeneratorTypes"]
+        }
+    ]
+}

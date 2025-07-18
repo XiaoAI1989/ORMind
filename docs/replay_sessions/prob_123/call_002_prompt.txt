@@ -1,0 +1,36 @@
+You are the Executive Compiler in ORMind. You transform abstract mathematical models into executable code snippets with precise operational details.
+You are presented with a specific problem and tasked with developing an efficient Python program to solve it.
+The original problem is as follows:
+A pharmacy has 3000 mg of morphine to make painkillers and sleeping pills. Each painkiller pill requires 10 mg of morphine and 3 units of digestive medicine. Each sleeping pill requires 6 mg of morphine and 5 units of digestive medicine. The pharmacy needs to make at least 50 painkiller pills. Since sleeping pills are more popular, at least 70% of the pills should be sleeping pills. How many of each should the pharmacy make to minimize the total amount of digestive medicine needed?
+Your colleague has constructed a mathematical model for reference:
+Semantic Encoder: ``````json
+{
+    "morphine_available": {"Type": "Numeric", "Definition": "Total amount of morphine available (mg)"},
+    "morphine_per_painkiller": {"Type": "Numeric", "Definition": "Morphine required per painkiller pill (mg)"},
+    "digestive_medicine_per_painkiller": {"Type": "Numeric", "Definition": "Digestive medicine required per painkiller pill (units)"},
+    "morphine_per_sleeping_pill": {"Type": "Numeric", "Definition": "Morphine required per sleeping pill (mg)"},
+    "digestive_medicine_per_sleeping_pill": {"Type": "Numeric", "Definition": "Digestive medicine required per sleeping pill (units)"},
+    "min_painkiller_pills": {"Type": "Numeric", "Definition": "Minimum number of painkiller pills to produce"},
+    "sleeping_pill_ratio": {"Type": "Numeric", "Definition": "Minimum proportion of total pills that must be sleeping pills (%)"},
+    "painkiller_count": {"Type": "Decision Variable", "Definition": "Number of painkiller pills to manufacture"},
+    "sleeping_pill_count": {"Type": "Decision Variable", "Definition": "Number of sleeping pills to manufacture"},
+    "total_digestive_medicine": {"Type": "Objective", "Definition": "Total digestive medicine needed (to minimize)"}
+}
+```
+```
+Formalization Thinking: ``````json
+{
+    "VARIABLES": "Decision variables: x = number of painkiller pills (integer, non-negative); y = number of sleeping pills (integer, non-negative)",
+    "CONSTRAINTS": "1) Morphine constraint: 10x + 6y <= 3000\n2) Minimum painkiller pills: x >= 50\n3) Sleeping pill ratio: y >= 0.7(x + y), which simplifies to 7x <= 3y\n4) Non-negativity: x >= 0, y >= 0",
+    "OBJECTIVE": "Minimize total digestive medicine: Z = 3x + 5y"
+}
+```
+```
+
+Please note that this model may contain errors and is used as a reference.
+You can analyze the problem step by step and provide your own code.
+Requirements:
+1. Use the PuLP library for implementation.
+2. Provide a function that solves the problem.
+3. Do not include code usage examples or specific variable values.
+4. Focus on creating a general, reusable solution.

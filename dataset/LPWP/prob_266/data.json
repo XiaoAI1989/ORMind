@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "acai_berry_smoothie": 2.0,
+            "banana_chocolate_smoothie": 3.0
+        },
+        "output": [
+            18.0
+        ]
+    }
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "plush_toys": 190,
+            "dolls": 65
+        },
+        "output": [
+            890
+        ]
+    }
+]

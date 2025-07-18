@@ -1,0 +1,61 @@
+{
+    "description": "The capacitated warehouse location problem is the problem of locating \\param{NumberOfLocations} warehouses which have to service \\param{NumberOfCustomers} customers, at minimum cost. Each customer has an associated demand \\param{CustomerDemand}. There are constraints on the total demand that can be met from a warehouse, as specified by \\param{WarehouseCapacity}. Costs are incurred when allocating service to customers from warehouses \\param{ServiceAllocationCost}, and warehouses have a fixed operating cost \\param{WarehouseFixedCost}. Additionally, there is a lower limit \\param{MinimumDemandFromWarehouse} on the amount of demand that a warehouse must meet if it is opened, as well as constraints on the minimum \\param{MinimumOpenWarehouses} and maximum \\param{MaximumOpenWarehouses} number of warehouses that can be operational.",
+    "parameters": [
+        {
+            "symbol": "NumberOfLocations",
+            "definition": "The total number of potential warehouse locations",
+            "shape": []
+        },
+        {
+            "symbol": "NumberOfCustomers",
+            "definition": "The total number of customers to be serviced",
+            "shape": []
+        },
+        {
+            "symbol": "CustomerDemand",
+            "definition": "The demand of each customer",
+            "shape": [
+                "NumberOfCustomers"
+            ]
+        },
+        {
+            "symbol": "ServiceAllocationCost",
+            "definition": "The cost of allocating service from each warehouse to each customer",
+            "shape": [
+                "NumberOfLocations",
+                "NumberOfCustomers"
+            ]
+        },
+        {
+            "symbol": "WarehouseCapacity",
+            "definition": "The total capacity for each warehouse",
+            "shape": [
+                "NumberOfLocations"
+            ]
+        },
+        {
+            "symbol": "MinimumDemandFromWarehouse",
+            "definition": "The lower limit on the demand that must be met from a warehouse if it is to be operational",
+            "shape": [
+                "NumberOfLocations"
+            ]
+        },
+        {
+            "symbol": "MinimumOpenWarehouses",
+            "definition": "The minimum number of warehouses that need to be operational",
+            "shape": []
+        },
+        {
+            "symbol": "MaximumOpenWarehouses",
+            "definition": "The maximum number of warehouses that can be operational",
+            "shape": []
+        },
+        {
+            "symbol": "WarehouseFixedCost",
+            "definition": "The fixed operating cost of each warehouse",
+            "shape": [
+                "NumberOfLocations"
+            ]
+        }
+    ]
+}

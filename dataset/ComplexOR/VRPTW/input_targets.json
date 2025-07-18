@@ -1,0 +1,52 @@
+{
+    "background": "The Vehicle Routing Problem with Time Windows (VRPTW) aims to optimize the distribution of goods between depots and customers using a fleet of vehicles with limited capacity, ensuring customers' demands are met within specific time windows while respecting the vehicles' routing restrictions.",
+    "constraints": [
+        "The capacity of each vehicle i is limited to VehicleCapacity_i",
+        "Each customer j must be served within the time window from CustomerLBTW_j to CustomerUBTW_j",
+        "The number of vehicles available is limited to VehicleCount"
+    ],
+    "objective": "Optimize the routes for all vehicles such that all customer demands are fulfilled within their specific time windows while minimizing total travel distance and time",
+    "description": "The Vehicle Routing Problem with Time Windows (VRPTW) involves the distribution of goods between depots and customers using \\param{VehicleCount} vehicles. Each vehicle has to supply \\param{CustomerCount} customers, and has a limited capacity, \\param{VehicleCapacity_i}, for each vehicle i. Each customer, j, has an associated demand, \\param{CustomerDemand_j}, that must be satisfied within the customer-specific time window, defined by the lower and upper bounds, \\param{CustomerLBTW_j} and \\param{CustomerUBTW_j}, respectively. The \\param{CustomerDistance_{i,j}} parameter represents the distance between customer i to customer j, and \\param{CustomerServiceTime_j} denotes the service time for customer j.",
+    "parameters": [
+        {
+            "symbol": "CustomerCount",
+            "definition": "The number of customers to be supplied",
+            "shape": []
+        },
+        {
+            "symbol": "VehicleCount",
+            "definition": "The number of vehicles available for distribution",
+            "shape": []
+        },
+        {
+            "symbol": "CustomerDemand",
+            "definition": "The demand of each customer",
+            "shape": ["CustomerCount"]
+        },
+        {
+            "symbol": "CustomerLBTW",
+            "definition": "The lower bound of the time window for each customer",
+            "shape": ["CustomerCount"]
+        },
+        {
+            "symbol": "CustomerUBTW",
+            "definition": "The upper bound of the time window for each customer",
+            "shape": ["CustomerCount"]
+        },
+        {
+            "symbol": "CustomerDistance",
+            "definition": "The distance from each customer to every other customer",
+            "shape": ["CustomerCount", "CustomerCount"]
+        },
+        {
+            "symbol": "CustomerServiceTime",
+            "definition": "The service time required for each customer",
+            "shape": ["CustomerCount"]
+        },
+        {
+            "symbol": "VehicleCapacity",
+            "definition": "The capacity of each vehicle",
+            "shape": ["VehicleCount"]
+        }
+    ]
+}

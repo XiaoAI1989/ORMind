@@ -1,0 +1,45 @@
+{
+    "description": "The Aircraft Assignment Problem is a mathematical programming model that aims to assign \\param{TotalAircraft} aircraft to \\param{TotalRoutes} routes in order to minimize the total cost while satisfying availability and demand constraints. The availability for each aircraft i is \\param{Availability_i} and it represents the maximum number of routes that the aircraft can be assigned to. The demand for each route j is \\param{Demand_j} and it denotes the number of aircraft required to fulfill the passenger or cargo needs of the route. The capability of each aircraft i for each route j is given by \\param{Capacity_{i,j}} and it defines whether the aircraft can service the route, considering factors such as range, size, and suitability. Finally, \\param{Cost_{i,j}} represents the cost of assigning aircraft i to route j, which includes operational, fuel, and potential opportunity costs.",
+    "parameters": [
+        {
+            "symbol": "TotalAircraft",
+            "definition": "The total number of aircraft available for assignment",
+            "shape": []
+        },
+        {
+            "symbol": "TotalRoutes",
+            "definition": "The total number of routes that require aircraft assignment",
+            "shape": []
+        },
+        {
+            "symbol": "Availability",
+            "definition": "The availability of each aircraft, indicating the maximum number of routes it can be assigned to",
+            "shape": [
+                "TotalAircraft"
+            ]
+        },
+        {
+            "symbol": "Demand",
+            "definition": "The demand for each route, indicating the number of aircraft required",
+            "shape": [
+                "TotalRoutes"
+            ]
+        },
+        {
+            "symbol": "Capacity",
+            "definition": "The capacity matrix defining the suitability and capability of each aircraft for each route",
+            "shape": [
+                "TotalAircraft",
+                "TotalRoutes"
+            ]
+        },
+        {
+            "symbol": "Costs",
+            "definition": "The cost matrix representing the cost of assigning each aircraft to each route",
+            "shape": [
+                "TotalAircraft",
+                "TotalRoutes"
+            ]
+        }
+    ]
+}

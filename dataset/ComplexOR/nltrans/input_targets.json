@@ -1,0 +1,48 @@
+{
+    "background": "Consider a transportation problem. Given a set of origins `Origins` and a set of destinations `Destinations`. Each origin `i` has a certain supply of goods `Supply_{i}` and each destination `j` has a certain demand for goods `Demand_{j}`. The cost of shipping one unit of goods from origin `i` to destination `j` is `Rate_{i, j}`. However, the number of units shipped can't exceed the limit `Limit_{i, j}`. The problem aims to minimize the total cost of shipping goods from the origins to the destinations. How to decide the number of units to be shipped from each origin `i` to each destination `j`?",
+    "constraints": [
+        "the total amount of goods shipped from origin `i` equals its supply",
+        "the total amount of goods shipped to destination `j` equals its demand",
+        "the number of units shipped can't exceed the limit"
+    ],
+    "objective": "the total cost of shipping goods from the origins to the destinations",
+    "description": "Consider a transportation problem. Given a set of origins `Origins` and a set of destinations `Destinations`. Each origin `i` has a certain supply of goods `Supply_{i}` and each destination `j` has a certain demand for goods `Demand_{j}`. The cost of shipping one unit of goods from origin `i` to destination `j` is `Rate_{i, j}`. However, the number of units shipped can't exceed the limit `Limit_{i, j}`. The problem aims to minimize the total cost of shipping goods from the origins to the destinations. How to decide the number of units to be shipped from each origin `i` to each destination `j`?",
+    "parameters": [
+        {
+            "symbol": "Origins",
+            "definition": "The number of origins",
+            "shape": []
+        },
+        {
+            "symbol": "Destinations",
+            "definition": "The number of destinations",
+            "shape": []
+        },
+        {
+            "symbol": "Supply",
+            "definition": "amounts of goods available at origin `i`",
+            "shape": []
+        },
+        {
+            "symbol": "Demand",
+            "definition": "amounts of goods required at destination `j`",
+            "shape": []
+        },
+        {
+            "symbol": "Rate",
+            "definition": "shipment costs per unit from origin `i` to destination `j`",
+            "shape": [
+                "Origins",
+                "Destinations"
+            ]
+        },
+        {
+            "symbol": "Limit",
+            "definition": "limit on units shipped from origin `i` to destination `j`",
+            "shape": [
+                "Origins",
+                "Destinations"
+            ]
+        }
+    ]
+}

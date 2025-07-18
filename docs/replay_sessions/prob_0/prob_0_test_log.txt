@@ -1,0 +1,13 @@
+===============test sample 0===============
+Program Output:
+(3000.0, 0, 10)
+
+Ground Truth:
+3000
+Is passed: True
+
+
+
+1/1 passed
+is correct: True
+Final Result: ACCEPT

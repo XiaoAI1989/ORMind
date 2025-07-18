@@ -1,0 +1,13 @@
+===============test sample 0===============
+Program Output:
+{'status': 'Optimal', 'objective_value': 44.0, 'optimized_vars': {'x': {0: 0.0, 1: 1.0, 2: 1.0, 3: 0.0, 4: 1.0, 5: 1.0}}}
+
+Ground Truth:
+44.0
+Is passed: True
+
+
+
+1/1 passed
+is correct: True
+Final Result: ACCEPT

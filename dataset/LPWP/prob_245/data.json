@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "large_cruise_ship": 7,
+            "small_cruise_ship": 8
+        },
+        "output": [
+            260.0
+        ]
+    }
+]

@@ -1,0 +1,48 @@
+{
+    "background": "Consider a project assignment problem. Given a set of people `People` and a set of projects `Projects`. Each person `i` has a certain number of available hours `Supply_{i}` and each project `j` requires a certain number of hours `Demand_{j}`. The cost per hour of work for person `i` on project `j` is `Cost_{i, j}`. Each person `i` can contribute to project `j` up to a maximum limit `Limit_{i, j}`. The problem aims to minimize the total cost of assigning people to projects. It is constrained that the total number of hours assigned from each person `i` equals its supply and the total number of hours assigned to each project `j` equals its demand. How to decide the number of hours to be assigned from each person `i` to each project `j`?",
+    "constraints": [
+        "the total number of hours assigned from person `i` equals its supply",
+        "the total number of hours assigned to project `j` equals its demand",
+        "hours to be assigned from person `i` to project `j` can't exceed the capacity"
+    ],
+    "objective": "the total cost of assigning people to projects",
+    "description": "Consider a project assignment problem. Given a set of people `People` and a set of projects `Projects`. Each person `i` has a certain number of available hours `Supply_{i}` and each project `j` requires a certain number of hours `Demand_{j}`. The cost per hour of work for person `i` on project `j` is `Cost_{i, j}`. Each person `i` can contribute to project `j` up to a maximum limit `Limit_{i, j}`. The problem aims to minimize the total cost of assigning people to projects. It is constrained that the total number of hours assigned from each person `i` equals its supply and the total number of hours assigned to each project `j` equals its demand. How to decide the number of hours to be assigned from each person `i` to each project `j`?",
+    "parameters": [
+        {
+            "symbol": "People",
+            "definition": "The number of people",
+            "shape": []
+        },
+        {
+            "symbol": "Projects",
+            "definition": "The number of projects",
+            "shape": []
+        },
+        {
+            "symbol": "Supply",
+            "definition": "hours each person `i` is available",
+            "shape": ["People"]
+        },
+        {
+            "symbol": "Demand",
+            "definition": "hours each project `j` requires",
+            "shape": ["Projects"]
+        },
+        {
+            "symbol": "Cost",
+            "definition": "cost per hour of work for person `i` on project `j`",
+            "shape": [
+                "People",
+                "Projects"
+            ]
+        },
+        {
+            "symbol": "Limit",
+            "definition": "maximum contributions to projects for person `i` on project `j`",
+            "shape": [
+                "People",
+                "Projects"
+            ]
+        }
+    ]
+}

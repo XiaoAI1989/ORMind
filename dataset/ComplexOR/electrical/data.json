@@ -1,0 +1,46 @@
+[
+    {
+        "input": {
+            "GeneratorTypes": 3,
+            "TimePeriods": 2,
+            "Generators": [
+                2,
+                3,
+                1
+            ],
+            "Demand": [
+                200,
+                300
+            ],
+            "OnStart": 2,
+            "MinOutput": [
+                50,
+                100,
+                75
+            ],
+            "MaxOutput": [
+                100,
+                200,
+                150
+            ],
+            "BaseCost": [
+                10,
+                15,
+                20
+            ],
+            "PerMWCost": [
+                5,
+                8,
+                6
+            ],
+            "StartupCost": [
+                50,
+                75,
+                100
+            ]
+        },
+        "output": [
+            2755.0
+        ]
+    }
+]

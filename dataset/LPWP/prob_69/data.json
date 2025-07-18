@@ -1,0 +1,11 @@
+[
+    {
+        "input": {
+            "brownies": 2.0,
+            "lemon_squares": 3.0
+        },
+        "output": [
+            26.0
+        ]
+    }
+]

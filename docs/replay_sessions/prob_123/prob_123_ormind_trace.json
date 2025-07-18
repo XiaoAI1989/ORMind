@@ -1,0 +1,39 @@
+{
+  "mode": "paper",
+  "config": {
+    "use_semantic_encoder": true,
+    "use_formalization_thinking": true,
+    "use_counterfactual_analysis": true,
+    "use_syntax_error_analysis": true,
+    "with_conductor": false,
+    "with_terminology_interpreter": false,
+    "with_code_reviewer": false,
+    "max_repair_rounds": 1
+  },
+  "comments": [
+    {
+      "expert": "Semantic Encoder",
+      "text": "```json\n{\n    \"morphine_available\": {\"Type\": \"Numeric\", \"Definition\": \"Total amount of morphine available (mg)\"},\n    \"morphine_per_painkiller\": {\"Type\": \"Numeric\", \"Definition\": \"Morphine required per painkiller pill (mg)\"},\n    \"digestive_medicine_per_painkiller\": {\"Type\": \"Numeric\", \"Definition\": \"Digestive medicine required per painkiller pill (units)\"},\n    \"morphine_per_sleeping_pill\": {\"Type\": \"Numeric\", \"Definition\": \"Morphine required per sleeping pill (mg)\"},\n    \"digestive_medicine_per_sleeping_pill\": {\"Type\": \"Numeric\", \"Definition\": \"Digestive medicine required per sleeping pill (units)\"},\n    \"min_painkiller_pills\": {\"Type\": \"Numeric\", \"Definition\": \"Minimum number of painkiller pills to produce\"},\n    \"sleeping_pill_ratio\": {\"Type\": \"Numeric\", \"Definition\": \"Minimum proportion of total pills that must be sleeping pills (%)\"},\n    \"painkiller_count\": {\"Type\": \"Decision Variable\", \"Definition\": \"Number of painkiller pills to manufacture\"},\n    \"sleeping_pill_count\": {\"Type\": \"Decision Variable\", \"Definition\": \"Number of sleeping pills to manufacture\"},\n    \"total_digestive_medicine\": {\"Type\": \"Objective\", \"Definition\": \"Total digestive medicine needed (to minimize)\"}\n}\n```\n"
+    },
+    {
+      "expert": "Formalization Thinking",
+      "text": "```json\n{\n    \"VARIABLES\": \"Decision variables: x = number of painkiller pills (integer, non-negative); y = number of sleeping pills (integer, non-negative)\",\n    \"CONSTRAINTS\": \"1) Morphine constraint: 10x + 6y <= 3000\\n2) Minimum painkiller pills: x >= 50\\n3) Sleeping pill ratio: y >= 0.7(x + y), which simplifies to 7x <= 3y\\n4) Non-negativity: x >= 0, y >= 0\",\n    \"OBJECTIVE\": \"Minimize total digestive medicine: Z = 3x + 5y\"\n}\n```\n"
+    },
+    {
+      "expert": "Executive Compiler",
+      "text": "```python\nfrom pulp import LpProblem, LpVariable, LpMinimize, lpSum, value\n\ndef solve_pharmacy_pill_optimization():\n    \"\"\"\n    Solves the pharmacy pill manufacturing optimization problem.\n\n    Minimizes total digestive medicine needed while satisfying constraints on:\n    - Available morphine\n    - Minimum painkiller pills production\n    - Sleeping pill ratio requirement\n\n    Returns:\n        dict: Solution containing painkiller_count, sleeping_pill_count,\n              total_digestive_medicine, and solver status\n    \"\"\"\n\n    # Problem parameters\n    morphine_available = 3000  # mg\n    morphine_per_painkiller = 10  # mg\n    digestive_medicine_per_painkiller = 3  # units\n    morphine_per_sleeping_pill = 6  # mg\n    digestive_medicine_per_sleeping_pill = 5  # units\n    min_painkiller_pills = 50\n    sleeping_pill_ratio = 0.7  # 70%\n\n    # Create optimization problem\n    problem = LpProblem(\"Pharmacy_Pill_Optimization\", LpMinimize)\n\n    # Decision variables\n    painkiller_count = LpVariable(\"painkiller_pills\", lowBound=0, cat=\"Integer\")\n    sleeping_pill_count = LpVariable(\"sleeping_pills\", lowBound=0, cat=\"Integer\")\n\n    # Objective function: Minimize total digestive medicine\n    problem += digestive_medicine_per_painkiller * painkiller_count + \\\n              digestive_medicine_per_sleeping_pill * sleeping_pill_count, \\\n              \"Total_Digestive_Medicine\"\n\n    # Constraints\n    # 1. Morphine availability constraint\n    problem += morphine_per_painkiller * painkiller_count + \\\n              morphine_per_sleeping_pill * sleeping_pill_count <= morphine_available, \\\n              \"Morphine_Constraint\"\n\n    # 2. Minimum painkiller pills constraint\n    problem += painkiller_count >= min_painkiller_pills, \\\n              \"Min_Painkiller_Constraint\"\n\n    # 3. Sleeping pill ratio constraint: y >= 0.7(x + y)\n    # Rearranged: y - 0.7x - 0.7y >= 0 => 0.3y >= 0.7x => 3y >= 7x\n    problem += 3 * sleeping_pill_count >= 7 * painkiller_count, \\\n              \"Sleeping_Pill_Ratio_Constraint\"\n\n    # Solve the problem\n    problem.solve()\n\n    # Extract results\n    solution = {\n        \"painkiller_count\": int(value(painkiller_count)),\n        \"sleeping_pill_count\": int(value(sleeping_pill_count)),\n        \"total_digestive_medicine\": value(problem.objective),\n        \"status\": problem.status\n    }\n\n    return solution\n```\n"
+    }
+  ],
+  "repairs": [],
+  "counterfactual": {
+    "status": "clean",
+    "feedback": ""
+  },
+  "initial_code": "from pulp import LpProblem, LpVariable, LpMinimize, value\n\ndef prob_123(painkillers, sleeping_pills):\n    \"\"\"\n    Args:\n        painkillers: an integer, representing the number of painkiller pills\n        sleeping_pills: an integer, representing the number of sleeping pills\n    Returns:\n        amount_of_digestive_medicine: an integer, representing the total amount of digestive medicine needed\n    \"\"\"\n    morphine_available = 3000\n    morphine_per_painkiller = 10\n    digestive_medicine_per_painkiller = 3\n    morphine_per_sleeping_pill = 6\n    digestive_medicine_per_sleeping_pill = 5\n    min_painkiller_pills = 50\n    sleeping_pill_ratio = 0.7\n\n    problem = LpProblem(\"Pharmacy_Pill_Optimization\", LpMinimize)\n    painkiller_count = LpVariable(\"painkiller_pills\", lowBound=0, cat=\"Integer\")\n    sleeping_pill_count = LpVariable(\"sleeping_pills\", lowBound=0, cat=\"Integer\")\n\n    problem += digestive_medicine_per_painkiller * painkiller_count + digestive_medicine_per_sleeping_pill * sleeping_pill_count, \"Total_Digestive_Medicine\"\n    problem += morphine_per_painkiller * painkiller_count + morphine_per_sleeping_pill * sleeping_pill_count <= morphine_available, \"Morphine_Constraint\"\n    problem += painkiller_count >= min_painkiller_pills, \"Min_Painkiller_Constraint\"\n    problem += 3 * sleeping_pill_count >= 7 * painkiller_count, \"Sleeping_Pill_Ratio_Constraint\"\n\n    problem.solve()\n\n    obj = value(problem.objective)\n    var1 = int(value(painkiller_count))\n    var2 = int(value(sleeping_pill_count))\n\n    return obj, var1, var2",
+  "final_output_repr": "(735.0, 50, 117)",
+  "usage": {
+    "llm_calls": 5,
+    "prompt_tokens": 3892,
+    "completion_tokens": 1909
+  }
+}

@@ -1,0 +1,62 @@
+{
+    "background": "Lot-sizing problems involve planning production across predefined periods with events such as orders or machine set-ups affecting costs and capacity where each item's demand, production capacity, and costs vary by period.",
+    "constraints": [
+        "Number of items produced must meet the demand for each item in each period",
+        "Total production must not exceed the available capacity for each period",
+        "Each item has a specific capacity that might decrease in each period",
+        "Production amounts, initial stock, and holding costs for each item are non-negative",
+        "Backorder costs and fixed order costs for each item are non-negative",
+        "Holding costs are incurred on any unsold stock carried over to subsequent periods",
+        "Backorder costs are incurred if the demand is not met on time",
+        "A fixed cost is incurred every time an order is placed or a machine is set-up or changed over"
+    ],
+    "objective": "Minimize the total cost of production, including holding costs, backorder costs, and fixed order costs, while satisfying the demand for each item across all periods",
+    "description": "Lot-sizing problems are production planning problems where \\param{Periods} are predefined and production of an item during a \\param{Periods} involves a discrete event such as the payment of a cost or the loss of production capacity. These events can occur due to the placement of an order or the set-up, startup, or changeover of a machine. The demand for each of the \\param{Items} across each period is represented by \\param{Demand_{i,j}}, while the total production capacity available in each period is defined by \\param{TotalPeriodCapacity_j}. Each item has a specific capacity \\param{ItemCapacity_{i,j}} which could decrease in each period due to mentioned events. Holding costs for items are indicated by \\param{HoldingCost_i}, while backorder costs and fixed order costs are represented by \\param{BackorderCost_i} and \\param{FixedCost_i}, respectively. The initial stock of each item is provided by \\param{InitialStock_i}.",
+    "parameters": [
+        {
+            "symbol": "NumItems",
+            "definition": "The number of distinct items",
+            "shape": []
+        },
+        {
+            "symbol": "NumPeriods",
+            "definition": "The number of predefined periods",
+            "shape": []
+        },
+        {
+            "symbol": "Demand",
+            "definition": "The demand for each item across each period",
+            "shape": ["NumItems", "NumPeriods"]
+        },
+        {
+            "symbol": "TotalPeriodCapacity",
+            "definition": "The total production capacity available in each period",
+            "shape": ["NumPeriods"]
+        },
+        {
+            "symbol": "ItemCapacity",
+            "definition": "The specific production capacity of each item",
+            "shape": ["NumItems", "NumPeriods"]
+        },
+        {
+            "symbol": "HoldingCost",
+            "definition": "The holding cost for each item",
+            "shape": ["NumItems"]
+        },
+        {
+            "symbol": "BackorderCost",
+            "definition": "The backorder cost for each item",
+            "shape": ["NumItems"]
+        },
+        {
+            "symbol": "FixedCost",
+            "definition": "The fixed order cost for each item",
+            "shape": ["NumItems"]
+        },
+        {
+            "symbol": "InitialStock",
+            "definition": "The initial stock for each item",
+            "shape": ["NumItems"]
+        }
+    ]
+}

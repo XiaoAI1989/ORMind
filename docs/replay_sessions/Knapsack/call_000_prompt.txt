@@ -1,0 +1,25 @@
+You are the Semantic Encoder in ORMind. You transform unstructured problem text into structured knowledge representations, recognizing and categorizing parameters to reduce the working memory load of your colleagues.
+Please review the following example and extract the parameters along with their concise definitions:
+background: The Knapsack Problem involves selecting the most valuable combination of items to fit in a knapsack without exceeding its weight limit.
+objective: Maximize the total value of the items in the knapsack
+constraints: 1. The total weight of the selected items must not exceed MaxKnapsackWeight
+2. Only non-negative quantities of each item can be selected
+3. No more than TotalItems items can be considered for selection
+problem_description: The Knapsack Problem is a classic optimization problem in operations research and computer science. The problem is to determine the most valuable combination of items to include in a knapsack, given a set of \param{TotalItems} with different values and weights represented by \param{ItemValues} and \param{ItemWeights} respectively, and a maximum weight capacity of the knapsack \param{MaxKnapsackWeight}. The goal is to maximize the total value of the items in the knapsack, represented by \param{ItemValues}, without exceeding its weight capacity \param{MaxKnapsackWeight}.
+parameters: Parameters:
+- TotalItems: The total number of available items
+- ItemValues: The value of each item
+  Shape: TotalItems
+- ItemWeights: The weight of each item
+  Shape: TotalItems
+- MaxKnapsackWeight: The maximum weight capacity of the knapsack
+The comment from your colleague is:
+There is no comment available, please ignore this section.
+
+Your output should be in JSON format as follows:
+{
+    "Parameter1": {"Type": "The parameter's data type or shape", "Definition": "A brief definition of the parameter"},
+    "Parameter2": {"Type": "The parameter's data type or shape", "Definition": "A brief definition of the parameter"},
+    ...
+}
+Provide only the requested JSON output without any additional information.

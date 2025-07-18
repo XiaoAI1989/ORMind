@@ -1,0 +1,14 @@
+[
+    {
+        "input": {
+            "A": 12,
+            "B": 6,
+            "constraint1": 220,
+            "constraint2": 160,
+            "constraint3": 350
+        },
+        "output": [
+            125.4929565
+        ]
+    }
+]

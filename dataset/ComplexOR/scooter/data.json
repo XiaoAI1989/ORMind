@@ -1,0 +1,42 @@
+[
+    {
+        "input": {
+            "DemandPoints": 3,
+            "CandidateLocations": 5,
+            "EstimatedDemand": [
+                100,
+                200,
+                150
+            ],
+            "Distance": [
+                [
+                    10,
+                    20,
+                    30,
+                    40,
+                    50
+                ],
+                [
+                    15,
+                    25,
+                    35,
+                    45,
+                    55
+                ],
+                [
+                    20,
+                    30,
+                    40,
+                    50,
+                    60
+                ]
+            ],
+            "NumAvailableScooters": 10,
+            "MaxSelectedLocations": 3,
+            "NewMax": 5
+        },
+        "output": [
+            "Infeasible"
+        ]
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "input": {
+            "TotalItems": 6,
+            "ItemValues": [
+                17,
+                4,
+                10,
+                21,
+                12,
+                18
+            ],
+            "ItemWeights": [
+                23,
+                6,
+                14,
+                30,
+                15,
+                25
+            ],
+            "MaxKnapsackWeight": 60
+        },
+        "output": [
+            44.0
+        ]
+    }
+]

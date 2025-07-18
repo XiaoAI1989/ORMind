@@ -1,0 +1,113 @@
+You are the Metacognitive Supervisor in ORMind. You monitor the entire solution generation process, format the final program, and make high-level adjustments when errors are detected.
+Your colleague Executive Compiler has given his answer:
+Semantic Encoder: ``````json
+{
+    "morphine_available": {"Type": "Numeric", "Definition": "Total amount of morphine available (mg)"},
+    "morphine_per_painkiller": {"Type": "Numeric", "Definition": "Morphine required per painkiller pill (mg)"},
+    "digestive_medicine_per_painkiller": {"Type": "Numeric", "Definition": "Digestive medicine required per painkiller pill (units)"},
+    "morphine_per_sleeping_pill": {"Type": "Numeric", "Definition": "Morphine required per sleeping pill (mg)"},
+    "digestive_medicine_per_sleeping_pill": {"Type": "Numeric", "Definition": "Digestive medicine required per sleeping pill (units)"},
+    "min_painkiller_pills": {"Type": "Numeric", "Definition": "Minimum number of painkiller pills to produce"},
+    "sleeping_pill_ratio": {"Type": "Numeric", "Definition": "Minimum proportion of total pills that must be sleeping pills (%)"},
+    "painkiller_count": {"Type": "Decision Variable", "Definition": "Number of painkiller pills to manufacture"},
+    "sleeping_pill_count": {"Type": "Decision Variable", "Definition": "Number of sleeping pills to manufacture"},
+    "total_digestive_medicine": {"Type": "Objective", "Definition": "Total digestive medicine needed (to minimize)"}
+}
+```
+```
+Formalization Thinking: ``````json
+{
+    "VARIABLES": "Decision variables: x = number of painkiller pills (integer, non-negative); y = number of sleeping pills (integer, non-negative)",
+    "CONSTRAINTS": "1) Morphine constraint: 10x + 6y <= 3000\n2) Minimum painkiller pills: x >= 50\n3) Sleeping pill ratio: y >= 0.7(x + y), which simplifies to 7x <= 3y\n4) Non-negativity: x >= 0, y >= 0",
+    "OBJECTIVE": "Minimize total digestive medicine: Z = 3x + 5y"
+}
+```
+```
+Executive Compiler: ``````python
+from pulp import LpProblem, LpVariable, LpMinimize, lpSum, value
+
+def solve_pharmacy_pill_optimization():
+    """
+    Solves the pharmacy pill manufacturing optimization problem.
+
+    Minimizes total digestive medicine needed while satisfying constraints on:
+    - Available morphine
+    - Minimum painkiller pills production
+    - Sleeping pill ratio requirement
+
+    Returns:
+        dict: Solution containing painkiller_count, sleeping_pill_count,
+              total_digestive_medicine, and solver status
+    """
+
+    # Problem parameters
+    morphine_available = 3000  # mg
+    morphine_per_painkiller = 10  # mg
+    digestive_medicine_per_painkiller = 3  # units
+    morphine_per_sleeping_pill = 6  # mg
+    digestive_medicine_per_sleeping_pill = 5  # units
+    min_painkiller_pills = 50
+    sleeping_pill_ratio = 0.7  # 70%
+
+    # Create optimization problem
+    problem = LpProblem("Pharmacy_Pill_Optimization", LpMinimize)
+
+    # Decision variables
+    painkiller_count = LpVariable("painkiller_pills", lowBound=0, cat="Integer")
+    sleeping_pill_count = LpVariable("sleeping_pills", lowBound=0, cat="Integer")
+
+    # Objective function: Minimize total digestive medicine
+    problem += digestive_medicine_per_painkiller * painkiller_count + \
+              digestive_medicine_per_sleeping_pill * sleeping_pill_count, \
+              "Total_Digestive_Medicine"
+
+    # Constraints
+    # 1. Morphine availability constraint
+    problem += morphine_per_painkiller * painkiller_count + \
+              morphine_per_sleeping_pill * sleeping_pill_count <= morphine_available, \
+              "Morphine_Constraint"
+
+    # 2. Minimum painkiller pills constraint
+    problem += painkiller_count >= min_painkiller_pills, \
+              "Min_Painkiller_Constraint"
+
+    # 3. Sleeping pill ratio constraint: y >= 0.7(x + y)
+    # Rearranged: y - 0.7x - 0.7y >= 0 => 0.3y >= 0.7x => 3y >= 7x
+    problem += 3 * sleeping_pill_count >= 7 * painkiller_count, \
+              "Sleeping_Pill_Ratio_Constraint"
+
+    # Solve the problem
+    problem.solve()
+
+    # Extract results
+    solution = {
+        "painkiller_count": int(value(painkiller_count)),
+        "sleeping_pill_count": int(value(sleeping_pill_count)),
+        "total_digestive_medicine": value(problem.objective),
+        "status": problem.status
+    }
+
+    return solution
+```
+```
+
+This answer has not been formatted. You need to format the code as the example.
+The final code must has the same input args and function name as the code example:
+
+def prob_123(painkillers, sleeping_pills):
+    """
+    Args:
+        painkillers: an integer, representing the number of painkiller pills
+        sleeping_pills: an integer, representing the number of sleeping pills
+    Returns:
+        amount_of_digestive_medicine: an integer, representing the total amount of digestive medicine needed  
+    """
+    obj = 1e9
+    # To be implemented
+    return obj,var1,var2
+
+You also need to return the optimized variables.
+Important: Your final code should strictly use same input args, function name and return style of the code example exactly.
+Note: While certain parameters in the example may not be utilized, it is imperative to include all of them in the function definition.
+The function must return a tuple, with the first element being the objective value. A dictionary is not permitted as the return type.
+Don't forget to import the library. Don't give any example usage.

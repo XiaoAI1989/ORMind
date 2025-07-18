@@ -1,0 +1,64 @@
+{
+    "background": "Given a number of flights, each with a number of passengers to carry, and a set of vehicle types, each with a capacity, how should planes be assigned to flights, and planes be routed to carry the passengers at minimum cost.",
+    "constraints": [
+        "Flow balance for number of planes for each location and period",
+        "Flow balance for number of planes for each location and period",
+        "Cannot use more planes than what we have in fleet",
+        "Capacity on flight `(i, t, j, h)` must cover its demand",
+        "Restrict the NumPlanes variables on routes with no scheduled flights"
+    ],
+    "objective": "The total cost of using the planes",
+    "description": "Given a number of flights, each with a number of passengers to carry, and a set of vehicle types, each with a capacity, how should planes be assigned to flights, and planes be routed to carry the passengers at minimum cost.",
+    "parameters": [
+        {
+            "symbol": "Locations",
+            "definition": "The number of locations/cities",
+            "shape": []
+        },
+        {
+            "symbol": "Planes",
+            "definition": "The number of vehicles/planes types",
+            "shape": []
+        },
+        {
+            "symbol": "Periods",
+            "definition": "The number of all periods",
+            "shape": []
+        },
+        {
+            "symbol": "Capacity",
+            "definition": "Capacity of planes of type `v`",
+            "shape": ["Planes"]
+        },
+        {
+            "symbol": "Cost",
+            "definition": "Cost of using planes of type `v`",
+            "shape": ["Planes"]
+        },
+        {
+            "symbol": "AvailablePlanes",
+            "definition": "Available number of planes of type `v`",
+            "shape": ["Planes"]
+        },
+        {
+            "symbol": "Delta",
+            "definition": "Binary parameter; 1, if there is flight depart from `i` in period `t` and arrive at `j` in period `h`; 0 otherwise",
+            "shape": [
+                "Periods",
+                "Locations",
+                "Locations",
+                "Periods"
+            ]
+        },
+        {
+            "symbol": "NumberOfPassengers",
+            "definition": "Number of passengers for flight `(i, t, j, h)`",
+            "shape": [
+                "Locations",
+                "Periods",
+                "Locations",
+                "Periods"
+            ]
+        }
+    ]
+}

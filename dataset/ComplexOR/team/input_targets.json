@@ -1,0 +1,43 @@
+{
+    "background": "As a team leader, you have several projects requiring different expertise levels in different areas. You want to assign a set of people to these projects. Each person has a level of expertise in each of the areas. How to assign people to projects to minimize the maximum skill shortage from the project expertise requirement?",
+    "constraints": [
+        "Each person should be assigned to only one project",
+        "Attained skill level for each project is the maximum level of individuals assigned to the project",
+        "The maximum skill shortage"
+    ],
+    "objective": "The maximum skill shortage over all projects",
+    "description": "As a team leader, you have several projects requiring different expertise levels in different areas. You want to assign a set of people to these projects. Each person has a level of expertise in each of the areas. How to assign people to projects to minimize the maximum skill shortage from the project expertise requirement?",
+    "parameters": [
+        {
+            "symbol": "People",
+            "definition": "The number of people or staff",
+            "shape": []
+        },
+        {
+            "symbol": "Projects",
+            "definition": "The number of projects",
+            "shape": []
+        },
+        {
+            "symbol": "Skills",
+            "definition": "The number of skills or expertise",
+            "shape": []
+        },
+        {
+            "symbol": "RequiredSkill",
+            "definition": "Required level of skill `s` for project `c`",
+            "shape": [
+                "Projects",
+                "Skills"
+            ]
+        },
+        {
+            "symbol": "IndividualSkill",
+            "definition": "Level of skill `s` of individual `p`",
+            "shape": [
+                "People",
+                "Skills"
+            ]
+        }
+    ]
+}

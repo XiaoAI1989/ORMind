@@ -1,0 +1,37 @@
+{
+    "description": "The goal is to minimize the price of an alloy produced from other alloys available on the market. There are \\param{AlloysOnMarket} different alloys that can be bought to blend into the final product. The needed composition of the end alloy requires \\param{RequiredElements} elements. Each alloy on the market has a known composition given by \\param{CompositionDataPercentage_{e,a}}, which indicates the percentage of element e in alloy a. The desired percentage of each element in the final blend is specified by \\param{DesiredBlendPercentage_e}. Furthermore, each alloy a on the market comes with a price \\param{AlloyPrice_a}. The objective of the optimization problem is to determine the quantity of each available alloy that should be used to achieve the desired blend percentages at the minimum total cost, without exceeding the availability of the alloys.",
+    "parameters": [
+        {
+            "symbol": "AlloysOnMarket",
+            "definition": "The number of different alloys available on the market",
+            "shape": []
+        },
+        {
+            "symbol": "RequiredElements",
+            "definition": "The number of elements required in the desired alloy blend",
+            "shape": []
+        },
+        {
+            "symbol": "CompositionDataPercentage",
+            "definition": "The composition data indicating the percentage of each required element in each available alloy",
+            "shape": [
+                "RequiredElements",
+                "AlloysOnMarket"
+            ]
+        },
+        {
+            "symbol": "DesiredBlendPercentage",
+            "definition": "The desired percentage of each required element in the final alloy blend",
+            "shape": [
+                "RequiredElements"
+            ]
+        },
+        {
+            "symbol": "AlloyPrice",
+            "definition": "The price of each alloy available on the market",
+            "shape": [
+                "AlloysOnMarket"
+            ]
+        }
+    ]
+}
